@@ -500,7 +500,9 @@ canvasFromRight = height-1;%+border-1;
 slidersFromLeft = widthaxesbar;
 tabsFromRight = posFigure(3)-widthaxesbar;
 
-setpositiontoolbar2(figureData.htoolbar2,posFigure,heightToolbar);
+if ~isempty(figureData.htoolbar2)
+    setpositiontoolbar2(figureData.htoolbar2,posFigure,heightToolbar);
+end
 
 if strcmp(figureData.configuration.viewparts.toolbar2,'on'),
     canvasFromAbove = heightToolbar;
@@ -516,8 +518,12 @@ if strcmp(figureData.configuration.viewparts.sliders,'off'),
 end
 slidersFromAbove = canvasFromAbove;
 
-setpositionaxesbar(figureData.htabs,border,height,posFigure,canvasFromLeft,tabsFromRight);
-setpositionsliders(figureData.hsliders,border,height,slidersFromAbove,slidersFromLeft,posFigure);
+if ~isempty(figureData.htabs)
+    setpositionaxesbar(figureData.htabs,border,height,posFigure,canvasFromLeft,tabsFromRight);
+end
+if ~isempty(figureData.hsliders)
+    setpositionsliders(figureData.hsliders,border,height,slidersFromAbove,slidersFromLeft,posFigure);
+end
 
 if nargin == 3,
     hAxes = varargin{1};
@@ -951,7 +957,7 @@ hAxes = axes(...
     'Tag','grapheditgraph',...
     'Units','Pixels',...
     'SelectionHighlight','off',...
-    'Drawmode','fast',...        'EraseMode','xor',...
+    'SortMethod','childorder',...        'EraseMode','xor',...
     'Color','white',...          'Box','on',...
     'XTickLabel',[],...
     'YTickLabel',[],...
@@ -4735,7 +4741,7 @@ canvasData = get(hAxes,'UserData');
 figureData = get(get(hAxes,'Parent'),'UserData');
 adjMatrix = get(objGraph,'adj');
 % drawing of nodes
-N = objGraph.N;
+N = get(objGraph, 'N');
 N = placenodes(hAxes,N);
 nodes = zeros(1,length(N));
 for i = 1:length(N)
@@ -4744,7 +4750,7 @@ for i = 1:length(N)
     nodes(i) = hObject(1);
 end
 % drawing of edges
-E = objGraph.E;
+E = get(objGraph, 'E');
 [in,fn,num] = find(adjMatrix);
 eps = []; %zeros(sum(num),3);
 for i = 1:length(in),
