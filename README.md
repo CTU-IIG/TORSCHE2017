@@ -1,4 +1,5 @@
 #TORSCHE Scheduling Toolbox for Matlab#
+
 is a freely available ([GNU GPL][l_gnu]) toolbox, mainly dedicated for the utilization and development of the scheduling algorithms. TORSCHE (Time Optimisation, Resources, SCHEduling) has been developed at the Czech Technical University in Prague, Faculty of Electrical Engineering, [Department of Control Engineering][l_dce]. 
 
 ![TORSCHE Example][i_example]
@@ -17,8 +18,8 @@ TORSCHE Scheduling Toolbox for Matlab (0.4.0) currently supports MATLAB 6.5 (R13
 
 Download the toolbox from github (clone git repository or Downnload ZIP) and copy/unpack Scheduling toolbox into the directory where Matlab toolboxes are installed (most often in <Matlab root>\toolbox on Windows systems and on Linux systems in <Matlab root>/toolbox). Run Matlab and add two new paths into directories with Scheduling toolbox and demos, e.g.:
 
-    addpath(path,'c:\matlab\toolbox\scheduling')
-    addpath(path,'c:\matlab\toolbox\scheduling\stdemos')
+    addpath(path,'<Matlab root>\toolbox\TORSCHE2017-master')
+    addpath(path,'<Matlab root>\toolbox\TORSCHE2017-master\stdemos')
 
 Several algorithms in the toolbox are implemented as Matlab MEX-files (compiled C/C++ files). Compiled MEX-files for MS-Windows and Linux on PC (32bit) compatible are part of this distribution. If you use the toolbox on a different platform, please compile these algorithms using command make from \scheduling directory (in Matlab environment). Before that, please specify the compiler using command mex -setup from (also in Matlab environment). We suggest to use Microsoft Visual C/C++ or gcc compilers.
 
@@ -26,15 +27,15 @@ Several algorithms in the toolbox are implemented as Matlab MEX-files (compiled 
 
 To display a list of all available commands and functions please type
 
-    >> help scheduling
+    >> help torsche
 
 To get help on any of the toolbox commands (e.g. task) type
 
-    >> help task
+    >> help torsche.task
 
 To get help on overloaded commands, i.e. commands that do exist somewhere in Matlab path (e.g. plot) type
 
-    >> help task/plot
+    >> help torsche.task/plot
 
 Or alternatively type help plot and then select task/plot at the bottom line of the help text.
 
