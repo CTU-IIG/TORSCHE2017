@@ -56,10 +56,10 @@ disp('------------------------------------------------------');
 
 
 %define problem
-prob = problem('1||sumwjDj');
+prob = torsche.problem('1||sumwjDj');
 
 %create set of tasks
-T=taskset([121 79 147 83 130 102 96 88]);
+T=torsche.taskset([121 79 147 83 130 102 96 88]);
 T.DueDate = [260 266 269 336 337 400 683 719];
 T.Weight = [3 8 1 6 3 3 5 6];
 T.Name={'T1','T2','T3','T4','T5','T6','T7','T8'};
@@ -68,7 +68,7 @@ disp(' ');
 disp('An instance of the scheduling problem:');
 get(T)
 
-TS = alg1sumwjdj(T, prob);
+TS = torsche.alg1sumwjdj(T, prob);
 
 %display taskset
 plot(TS);

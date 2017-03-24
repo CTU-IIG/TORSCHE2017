@@ -63,10 +63,10 @@ if (isfield(struct(object), propertyName))
 	        if ischar(value)
 	
 	            %get tasks names and for each of them set its name
-	            for i=1:size(object.taskset.Name,2)
+	            for i=1:size(object.parent.Name,2)
 	                taskNames{i} = [value, '_{' int2str(i) '}'];
 	            end
-	            object.taskset.Name = taskNames;
+	            object.parent.Name = taskNames;
 	            object.Name = value; %write new name
 			
 	        else
@@ -76,33 +76,33 @@ if (isfield(struct(object), propertyName))
 	    case 'releasetime'
 	        if isscalar(value) && ~ischar(value)
 	            object.ReleaseTime = value;
-	            object.taskset.ReleaseTime = value * ones(size(get(object,'procTime')));
+	            object.parent.ReleaseTime = value * ones(size(get(object,'procTime')));
 	        else
 	            error('TORSCHE:Job:InvalidParam','Invalid Parameter, see help!');
 	        end
 	    case 'deadline'
 	        if isscalar(value) && ~ischar(value)
 	            object.DeadLine = value;
-	            object.taskset.Deadline = value * ones(size(get(object,'procTime')));
+	            object.parent.Deadline = value * ones(size(get(object,'procTime')));
 	        else
 	            error('TORSCHE:Job:InvalidParam','Invalid Parameter, see help!');
-	        end
+            end
 	    case 'duedate'
 	        if isscalar(value) && ~ischar(value)
 	            object.DueDate = value;
-	            object.taskset.DueDate = value * ones(size(get(object,'procTime')));
+	            object.parent.DueDate = value * ones(size(get(object,'procTime')));
 	        else
 	            error('TORSCHE:Job:InvalidParam','Invalid Parameter, see help!');
 	        end  
 	    case 'weight'
 	        if isscalar(value) && ~ischar(value)
 	            object.Weight = value;
-	            object.taskset.Weight = value * ones(size(get(object,'procTime')));
+	            object.parent.Weight = value * ones(size(get(object,'procTime')));
 	        else
 	            error('TORSCHE:Job:InvalidParam','Invalid Parameter, see help!');
                 end
            case 'tasks'
-                   object.taskset.tasks = value;
+                   object.parent.tasks = value;
                   
 	   otherwise
 		 eval(['object.' propertyName '=value;']);  
@@ -113,7 +113,9 @@ else
     try
 	switch lower(propertyName)
 		case 'jobuserparam'
-	        	object.taskset.TSUserParam = value;  
+	        	object.parent.TSUserParam = value;
+        case 'processor'
+                object.parent.Processor = value;
         otherwise
          	    eval(['object.' object.parent ' = ' object.parent '(object.' object.parent ', propertyName, value);']);
 	end

@@ -60,9 +60,9 @@ function varargout = gonzalezsahni_demo
 
 POS = [1 2; 2 1; 2 1; 1 2];
 PTOS = [7 3; 5 4; 6 6; 8 6];
-sh = shop(PTOS,POS);
+sh = torsche.shop(PTOS,POS);
 sh.type = 'O';
-ts = taskset(shop2taskset(sh));
+ts = torsche.taskset(shop2taskset(sh));
 yax = {};
 for i=1:size(ts)
 	[e r t] = regexpi(ts(i).name,'^T_\{(\d+)\}_\{(\d+)\}$');
@@ -70,8 +70,8 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-pr = problem('O2||Cmax');
-sh = gonzalezsahni(sh,pr);
+pr = torsche.problem('O2||Cmax');
+sh = torsche.gonzalezsahni(sh,pr);
 if nargout == 3
 	varargout{1}=PTOS;
 	varargout{2}=POS;

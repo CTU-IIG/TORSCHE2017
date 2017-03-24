@@ -54,7 +54,7 @@ disp('------------------------------------------------------');
 
 %Example:
 %Phillips, L.W. and Unger, P.S. (1976) Mathematical programming
-%solution of a hoist scheduling program. AIIE Transactions, 8(2),219–225.
+%solution of a hoist scheduling program. AIIE Transactions, 8(2),219ï¿½225.
 a = [30 100 30 125];            %the minimum processing time in stage
 b = [1000 110 60 130];          %the maximum processing time in stage
 C = toeplitz([0 5 10 15]);      %the traveling time of the empty hoist
@@ -67,16 +67,16 @@ d = [10 10 10 20];              %the minimum time required for the hoist to move
 % d = [1 1 2];                  %the minimum time required for the hoist to move
 
 %Create taskset (d is considered as processing time)
-T = taskset(d);
+T = torsche.taskset(d);
 
 T.TSUserParam.SetupTime = C;
 T.TSUserParam.minDistance = a;
 T.TSUserParam.maxDistance = b;
 
-schoptions = schoptionsset();
+schoptions = torsche.schoptionsset();
 
 %Call the algorithm
-TS = singlehoist(T,schoptions,1)
+TS = torsche.singlehoist(T,schoptions,1)
 
 %end of file
 

@@ -77,7 +77,7 @@ function rtaskset = randtaskset(nbTasks,varargin)
 
 
 for i=1:nbTasks
-    rtask = randtask(varargin{:});
+    rtask = torsche.randtask(varargin{:});
     if i==1
         rtaskset = [rtask];
     else

@@ -50,7 +50,7 @@ function gOut = horzcat(varargin)
 
 
 ni = nargin;
-if  isa(varargin{1},'graph') && ni == 1
+if  isa(varargin{1},'torsche.graph') && ni == 1
     gOut = varargin{1};
 elseif ni > 1
     g1 = varargin{1};

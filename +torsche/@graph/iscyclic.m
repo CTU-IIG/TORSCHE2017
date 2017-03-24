@@ -57,7 +57,7 @@ function isCyclic = iscyclic(g,varargin)
 
 
 
-    if nargin == 1 && isa(g,'graph')
+    if nargin == 1 && isa(g,'torsche.graph')
         adjMatrix = get(g,'adj');       % getting of adjacency matrix    
     elseif nargin == 2 && isa(varargin{1},'double')
         adjMatrix = varargin{1};    

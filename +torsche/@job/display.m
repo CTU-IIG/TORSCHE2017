@@ -50,7 +50,7 @@ function display(this)
 
  
 
-	disp(['Job with ',int2str(size(this.taskset.tasks, 2)),' tasks']);
+	disp(['Job with ',int2str(size(this.parent.tasks, 2)),' tasks']);
 end
 
 %end .. @job/display

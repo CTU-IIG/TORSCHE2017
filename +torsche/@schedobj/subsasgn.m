@@ -94,7 +94,7 @@ switch index(1).type
     case '()'    
         %for case where N is empty: N(1:5) = node();
         if isempty(this)
-            if isa(val,'task') % tasks are stored to cell
+            if isa(val,'torsche.task') % tasks are stored to cell
                 this = {eval(class(val))}; 
             else
                 this = eval(class(val));
@@ -118,7 +118,7 @@ function this = subsasgn_cell(this, index, val)
 % Help function which call schedobj/subsasign function for cell data type
 % too.
 if iscell(this) && ~strcmp(index(1).type,'{}')
-    this = subsasgn(schedobj(), index, val, this);
+    this = subsasgn(torsche.schedobj(), index, val, this);
 else
     this = subsasgn(this, index, val);
 end

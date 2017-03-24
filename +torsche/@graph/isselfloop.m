@@ -61,7 +61,7 @@ function isSelfLoop = isselfloop(g,varargin)
     isSelfLoop = false;
     
     % test of graph object
-    if nargin == 1 && isa(g,'graph')    
+    if nargin == 1 && isa(g,'torsche.graph')    
         eps = g.eps;
         if ~isempty(eps) && ~isempty(find(eps(:,1) == eps(:,2)))
             isSelfLoop = true;

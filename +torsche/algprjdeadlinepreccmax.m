@@ -165,10 +165,10 @@ ub(end) = CmaxUB;
 vartype(1:CmaxUB*n+1) = 'I';
 sense = 1;
 
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',0);
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',0);
 
 %solve the problem
-[xmin,fmin,status] = ilinprog (schoptions,sense,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status] = torsche.ilinprog (schoptions,sense,c,A,b,ctype,lb,ub,vartype);
 if status~=1
     TS = T;
     return;

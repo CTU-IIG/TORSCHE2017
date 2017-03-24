@@ -57,7 +57,7 @@ function [Props,AsgnVals,DefVal] = fieldnames(graph)
  
 
 % Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(getfield(struct(graph), graph.parent));
+[Props,AsgnVals,DefVal] = fieldnames(getfield(struct(graph), 'parent'));
 
 % Add graph properties
 Props = {'Name' 'N' 'E' 'UserParam' 'DataTypes' 'Color' 'GridFreq' Props{:} ...

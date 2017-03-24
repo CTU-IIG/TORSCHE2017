@@ -52,15 +52,15 @@ disp('------------------------------------------------------');
 
 
 %define the problem
-p = problem('1|rj|Cmax');
+p = torsche.problem('1|rj|Cmax');
 
 %create set of tasks
-t1=task('t1', 2, 3);
-t2=task('t2', 3, 0);
-t3=task('t3', 1, 4);
-t4=task('t4', 2, 1);
-t5=task('t5', 4, 9);
-T = taskset([t1 t2 t3 t4 t5]);
+t1=torsche.task('t1', 2, 3);
+t2=torsche.task('t2', 3, 0);
+t3=torsche.task('t3', 1, 4);
+t4=torsche.task('t4', 2, 1);
+t5=torsche.task('t5', 4, 9);
+T = torsche.taskset([t1 t2 t3 t4 t5]);
 
 %display taskset
 figure(1)
@@ -73,7 +73,7 @@ disp('An instance of the scheduling problem:');
 get(T)
 
 %call a scheduling algorithm
-TS = alg1rjcmax(T,p);
+TS = torsche.alg1rjcmax(T,p);
 
 %display results
 subplot(2,1,2)

@@ -103,7 +103,7 @@ textin = 0;
 asapdraw = 0;
 period_draw = 1;
 color = get_graphic_param(T,'color');
-if ~iscolor(color)
+if ~torsche.iscolor(color)
     color='g';
 end
 time_ofs = 0;
@@ -209,7 +209,7 @@ for imovtop=1:length(movtop)
 end
 
 % Write text
-reducename = schfeval('private/tex2mtex',T.Name);
+reducename = torsche.schfeval('private/tex2mtex',T.Name);
 if (texton)
     hand_text = text((minx+0.2),movtop(1)+1.3,reducename);
     set(hand_text,'FontWeight','bold');

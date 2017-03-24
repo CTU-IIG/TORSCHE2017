@@ -67,7 +67,7 @@ function [w]=criticalcircuitratio(varargin)
 
 
 na = nargin;
-if na==1 && isa(varargin{1},'graph')
+if na==1 && isa(varargin{1},'torsche.graph')
    g = varargin{1};
    n=size(g.N,2);                       %Number of graph nodes
    L = zeros(n);                        %Matrix of lengths
@@ -123,12 +123,12 @@ end;
 
 %A solution using ilinprog from TORSCHE
 f=zeros(1,n+1);	f(1,n+1)=1;         %Objective function
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',0);
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',0);
 CTYPE(1:size(A,1))='L';
 LB=-inf*ones(1,size(A,2));
 UB=inf*ones(1,size(A,2));
 VARTYPE(1:size(A,2))='C';
-x=ilinprog(schoptions,1,f',A,b',CTYPE',LB',UB',VARTYPE');
+x=torsche.ilinprog(schoptions,1,f',A,b',CTYPE',LB',UB',VARTYPE');
 
 %A solution using Optimization toolbox for Matlab
 %x=linprog(f',A,b,[],[],[],[],[],options);

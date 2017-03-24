@@ -61,6 +61,10 @@ if (isfield(struct(object), propertyName))
 else
     try
 	switch lower(propertyName)
+        case 'robots'
+			for i=1:size(object.Jobs,2)
+				object.TransportRobots = value;
+			end
 		case 'proctime'
 			for i=1:size(object.Jobs,2)
 				object.Jobs{i}.ProcTime = value(i,:);

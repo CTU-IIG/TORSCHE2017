@@ -56,7 +56,7 @@ function adduserparam(TS, file)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if ~isa(TS, 'taskset')
+if ~isa(TS, 'torsche.taskset')
     err = 'TORSCHE:invalidParameter';
     err = sprintf('%s\n%s', err, 'First parameter must of type taskset!');
     error(err) %#ok

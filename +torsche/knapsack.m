@@ -122,7 +122,7 @@ end
 
 % Creation of the graph object
 edgeListCell = mat2cell(edgeList,[ones(1,size(edgeList,1))],[ones(1,size(edgeList,2))]);
-g = graph('edl',edgeListCell,'edgeDatatype',{'double'}, 'name', 'Knapsack');
+g = torsche.graph('edl',edgeListCell,'edgeDatatype',{'double'}, 'name', 'Knapsack');
 
 % Setting up the position of verteces in the graphedit pane
 for i = 1:length(g.N),

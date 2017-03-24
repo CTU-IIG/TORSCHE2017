@@ -94,7 +94,7 @@ switch nargin
     case 4
         from = varargin{1};
         to   = varargin{2};
-        if isa(varargin{3},'edge')
+        if isa(varargin{3},'torsche.edge')
                 edgevector = varargin{3};
         else
                 param = varargin{3};

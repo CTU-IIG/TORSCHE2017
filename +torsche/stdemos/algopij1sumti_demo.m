@@ -59,12 +59,12 @@ function varargout = algopij1sumti_demo
 
 
 DueDates = [3 2 4 3 2];
-S = shop(ones(5,3),ones(5,3));
+S = torsche.shop(ones(5,3),ones(5,3));
 S.DueDate = DueDates;
 
-pr = problem('O|pij=1|SumTi');
+pr = torsche.problem('O|pj=1|SumTi');
 S.type = 'O';
-ts = taskset(shop2taskset(S));
+ts = torsche.taskset(shop2taskset(S));
 yax = {};
 for i=1:size(ts)
 	[e r t] = regexpi(ts(i).name,'^T_\{(\d+)\}_\{(\d+)\}$');
@@ -72,7 +72,7 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-S = algopij1sumti(S,pr);
+S = torsche.algopij1sumti(S,pr);
 if nargout == 2
 	varargout{1}=DueDates;
 	varargout{2}=S;

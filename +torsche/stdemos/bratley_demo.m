@@ -54,10 +54,10 @@ disp('----------------------------------------------------------------');
 
 
 %define the problem
-prob=problem('1|rj,~dj|Cmax');
+prob=torsche.problem('1|rj,~dj|Cmax');
 
 %set some tasks
-T=taskset([2 1 2 2]);
+T=torsche.taskset([2 1 2 2]);
 T.Deadline=([7 5 6 4]);
 T.ReleaseTime=([4 1 1 0]);
 %T = randtaskset(6, [1 5], [0 15], [10 30]);
@@ -75,7 +75,7 @@ plot(T);
 title('Tasks to be scheduled.')
 
 %call solving algorithm
-result=bratley(T,prob);
+result=torsche.bratley(T,prob);
 
 %if exist solution
 if ~isempty(result)

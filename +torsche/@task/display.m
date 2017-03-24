@@ -50,11 +50,11 @@ function display(T)
 % Suite 330, Boston, MA 02111-1307 USA
 
  
-reducename = schfeval('private/tex2mtex',T.Name);
+reducename = torsche.schfeval('private/tex2mtex',T.Name);
 if strcmp(reducename, T.Name)
     quote = '""';
 else
-    quote = '»«';
+    quote = 'ï¿½ï¿½';
 end
 disp(['Task ' quote(1) reducename quote(2)]);
 disp([' Processing time: ',int2str(T.ProcTime)]);

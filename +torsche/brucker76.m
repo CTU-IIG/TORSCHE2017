@@ -87,8 +87,8 @@ end
 
 [taskset, order] = sort(taskset,'DueDate','dec'); %sort tasks in nonincreasing order
 
-p=problem('P|prec|Cmax'); %problem overloaded
-taskset=listsch(taskset,p,m); %List Scheduling method
+p=torsche.problem('P|prec|Cmax'); %problem overloaded
+taskset=torsche.listsch(taskset,p,m); %List Scheduling method
 taskset.DueDate=DueSave(order); %correction of DueDates
 add_schedule(taskset,'Brucker76');
 

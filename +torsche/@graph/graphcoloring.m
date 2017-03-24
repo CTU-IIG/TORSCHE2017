@@ -65,7 +65,7 @@ function g = graphcoloring(g,varargin)
 
  
 
-    if ~isa(g,'graph'),
+    if ~isa(g,'torsche.graph'),
         error('Graph object is required as input parameter.');
     end
 
@@ -152,7 +152,7 @@ function g = graphcoloring(g,varargin)
 
 %--------------------- end GraphColoring -------------------------------        
 
-    clrRGB = colorfromcolormap(max(colorList))';
+    clrRGB = torsche.colorfromcolormap(max(colorList))';
 
     % output to graph object
     for i = 1:n,

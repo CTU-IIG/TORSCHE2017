@@ -69,7 +69,7 @@ function sh = algopij1sumti (sh, problem)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if ~isa(sh,'shop')
+if ~isa(sh,'torsche.shop')
 	error('TORSCHE:algopij1sumti:invalidParam','First parameter should be shop object')
 end
 

@@ -55,7 +55,7 @@ function object = set_helper(object, property, value)
 % to the Free Software Foundation, Inc., 59 Temple Place,
 % Suite 330, Boston, MA 02111-1307 USA
  
-
+warning off MATLAB:structOnObject
 if (isfield(struct(object), property))
      
 	    eval(['object.' property '=value;']);

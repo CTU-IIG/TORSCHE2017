@@ -55,7 +55,7 @@ colorLongName={'yellow','magenta','cyan','red','green','blue','white','black'};
 colorShortName={'y','m','c','r','g','b','w','k'};
 colorRGB={[1 1 0],[1 0 1],[0 1 1],[1 0 0],[0 1 0],[0 0 1],[1 1 1],[0 0 0]};
 
-switch(iscolor(color))
+switch(torsche.iscolor(color))
     case 1
         out = color;
     case 2

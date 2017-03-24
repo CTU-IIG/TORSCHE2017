@@ -7,7 +7,7 @@ function [Value, found] = get_helper(this, Property)
 %    See also: GET
 
 
-% Author: Jiri Cigler <ciglerj1@fel.cvut.cz>
+% Author: Jiri Cigler <ciglej1@fel.cvut.cz>
 % Originator: Michal Kutil <kutilm@fel.cvut.cz>
 % Originator: Premysl Sucha <suchap@fel.cvut.cz>
 % Project Responsible: Zdenek Hanzalek
@@ -53,74 +53,20 @@ function [Value, found] = get_helper(this, Property)
 
 
 found = true;
+
+
 switch lower(Property)
-  case 'scheduledesc'  % lower case
-    Value = this.schedule.desc;
-    return;
-  case 'count'  % lower case
-    Value = size(this);
-    return;
-  case 'tasks'  % lower case
-    Value = this.tasks;
-    return;   
+ case 'jobuserparam'
+       Value = this.taskset.TSUserParam;
+    case 'parent'
+       Value = this.parent;
+    case 'proctime'
+       Value = this.parent.ProcTime;
+    case 'processor'
+       Value = this.parent.Processor;
+ otherwise
+ 	found =false;
 end
     
-% Try to collect properties of all tasks
-found = false;
-Value = [];
-outputDimension = 0;
-for i=1:size(this.tasks, 1)
-    for j=1:size(this.tasks, 2)
-        try
-            V = get(this.tasks{i,j}, Property);
-            found = true;
-        catch
-            V = NaN;
-        end
-        if ischar(V)
-            Value{i,j} = V;
-        elseif isempty(V)
-            Value(i,j) = NaN;
-        else
-            if (size(this.tasks, 1) == 1) % Klasikl this with 1xn task
-                if (size(V,1) == 1) & (size(V,2) > 1) & (outputDimension == size(V,2) | outputDimension == 0) % Multi parameter
-                    Value(:,j) = V';
-                    outputDimension = size(V,2);
-                elseif (length(V)==1) & (outputDimension == size(V,2) | outputDimension == 0)
-                    Value(i,j) = V;
-                    outputDimension = 1;
-                else
-                    error(['Dimension mismatch in ' Property ' property.']);
-                end
-            else %Prepare for Shops
-                error('Remove this error message from get_vprop.m file, this is for Shops');
-                Value(i,j) = V;
-            end
-        end
-    end
-end
-
-
-% *************
-% funtion for get properties from task
-function prop = get_prop(this,property)
-for i=1:1:size(this.tasks,2)
-    tmp = get(this.tasks(i),property);
-    if sum(strcmpi(property,{'name','machine'}))
-        prop{i} = tmp;
-    else
-        prop(i) = tmp;
-    end
-end
-%end .. get_prop
-
-% *************
-% funtion for remove non public property
-function val = rm_field(val,AllProps)
-prop = fieldnames(val);
-for i=1:length(prop),
-    if ~sum(strcmpi(AllProps,prop{i}))
-        val = rmfield(val,prop{i});
-    end
 end
 

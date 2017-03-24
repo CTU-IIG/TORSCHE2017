@@ -61,14 +61,14 @@ function varargout =size(this,varargin)
  
 	if nargin==1
 	    if nargout <= 1
-	        varargout{1}=size(this.taskset.ProcTime);
+	        varargout{1}=size(this.parent.ProcTime);
 	    elseif nargout == 2
-	        varargout{1}=size(this.taskset.ProcTime,1);
-	        varargout{2}=size(this.taskset.ProcTime,2);
+	        varargout{1}=size(this.parent.ProcTime,1);
+	        varargout{2}=size(this.parent.ProcTime,2);
 	    else
 	    end
 	elseif   nargin==2
-	    varargout{1} = size(this.taskset.ProcTime,varargin{1});    
+	    varargout{1} = size(this.parent.ProcTime,varargin{1});    
 	end
 end
 %end .. @job/get

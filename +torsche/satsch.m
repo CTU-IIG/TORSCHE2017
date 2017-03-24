@@ -67,15 +67,15 @@ if ~(is(prob,'alpha','P') & is(prob,'betha','prec') & is(prob,'gamma','Cmax'))
 end
 
 % Inicialization
-p = problem ('P|prec|Cmax');
+p = torsche.problem ('P|prec|Cmax');
 
 % Use heuristics for start time search
 % 1st heuristic
-Theuristic_best = listsch(taskset, p, m);
+Theuristic_best = torsche.listsch(taskset, p, m);
 maxtime=schparam(Theuristic_best,'Cmax');
 % 2nd heuristic
 Theuristic = heuristic(taskset, 1);
-Theuristic = listsch(Theuristic, p, m);
+Theuristic = torsche.listsch(Theuristic, p, m);
 maxtime2=schparam(Theuristic,'Cmax');
 if maxtime2<maxtime
     maxtime = maxtime2;
@@ -83,7 +83,7 @@ if maxtime2<maxtime
 end
 % 3nd heuristic
 Theuristic = heuristic(taskset, 2);
-Theuristic = listsch(Theuristic, p, m);
+Theuristic = torsche.listsch(Theuristic, p, m);
 maxtime2=schparam(Theuristic,'Cmax');
 if maxtime2<maxtime
     maxtime = maxtime2;
@@ -167,7 +167,7 @@ if type==2
     ordertask=rot90(rot90(ordertask)); % Uncoment for LPT
 end
 
-nts = 'T = taskset([';
+nts = 'T = torsche.taskset([';
 % reorder tasks
 for i = 1:length(ordertask)
     nts=[nts ' tmp.tasks{' int2str(ordertask(i)) '}'];

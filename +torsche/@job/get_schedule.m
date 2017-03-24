@@ -1,13 +1,28 @@
-function [Value, found] = get_helper(this, Property)
-%GET_HELPER Internal function for virtual property retrieval.
+function [sch_start, sch_length, sch_processor, is_schedule] = get_schedule (TS)
+%GET_SCHEDULE gets schedule (starts time, lenght of time and processor)
+%  from a taskset 
 %
-%    [VALUE, found] = GET_HELPER(OBJECT, PROPERTY) returns PROPERTY VALUE.
-%       found is true if the virtual PROPERTY exist othewise is found false. 
-%    
-%    See also: GET
+%Synopsis
+%  [start, lenght, processor, is_schedule] = GET_SCHEDULE(T)
+%
+%Description
+% Properties:
+%  T:
+%    - taskset
+%  start:
+%    - cell/array of start times
+%  lenght:
+%    - cell/array of lengths of time
+%  processor:
+%    - cell/array of numbers of processor
+%  is_schedule:
+%    - 1 - schedule is inside taskset
+%    - 0 - taskset without schedule
+%
+% See also TASKSET/ADD_SCHEDULE.
 
 
-% Author: Jiri Cigler <ciglej1@fel.cvut.cz>
+% Author: Michal Kutil <kutilm@fel.cvut.cz>
 % Originator: Michal Kutil <kutilm@fel.cvut.cz>
 % Originator: Premysl Sucha <suchap@fel.cvut.cz>
 % Project Responsible: Zdenek Hanzalek
@@ -52,15 +67,24 @@ function [Value, found] = get_helper(this, Property)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-found = true;
-
-
-switch lower(Property)
- case 'jobuserparam'
-       Value = this.taskset.TSUserParam;
- otherwise
- 	found =false;
+is_schedule = TS.parent.schedule.is;
+if (is_schedule)
+    for i=1:count(TS)
+        [sch_start{i} sch_length{i} sch_processor{i}]= get_scht(TS.parent.tasks(i));
+    end
+    % cell to array
+    maxlength = 0;
+    for i=1:count(TS)
+        maxlength = max([maxlength length(sch_start{i}) length(sch_length{i}) length(sch_processor{i})]);
+    end
+    if maxlength == 1
+        sch_start = cell2mat(sch_start);
+        sch_length = cell2mat(sch_length);
+        sch_processor = cell2mat(sch_processor);
+    end 
+else
+    sch_start = nan;
+    sch_length = nan;
+    sch_processor = nan;
 end
-    
-end
-
+%end .. @taskset/get_schedule

@@ -57,7 +57,7 @@ disp('Demo of scheduling algorithm for problem ''P|in-tree,pj=1|Cmax''.');
 disp('--------------------------------------------------------------');
 
 %define scheduling problem
-p = problem('P|in-tree,pj=1|Cmax');
+p = torsche.problem('P|in-tree,pj=1|Cmax');
 
 %create set of tasks
 prec = [
@@ -74,7 +74,7 @@ prec = [
     0 0 0 0 0 0 0 0 0 0 0 1
     0 0 0 0 0 0 0 0 0 0 0 0
     ];
-T = taskset([1 1 1 1 1 1 1 1 1 1 1 1],prec);
+T = torsche.taskset([1 1 1 1 1 1 1 1 1 1 1 1],prec);
 processors = 3;
 
 disp(' ');
@@ -82,7 +82,7 @@ disp('An instance of the scheduling problem:');
 get(T)
 
 
-TS = hu(T,p,processors);
+TS = torsche.hu(T,p,processors);
 
 %display taskset
 plot(TS);

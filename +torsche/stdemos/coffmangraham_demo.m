@@ -58,7 +58,7 @@ disp('Demo of scheduling algorithm for problem ''P2|prec,pj=1|Cmax''.');
 disp('-------------------------------------------------------------');
 
 %define the problem
-p=problem('P2|prec,pj=1|Cmax');
+p=torsche.problem('P2|prec,pj=1|Cmax');
 
 %create set of tasks
 prec = [0 0 0 1 0 0 0 0 0 0 0 0 0
@@ -75,14 +75,14 @@ prec = [0 0 0 1 0 0 0 0 0 0 0 0 0
         0 0 0 0 0 0 0 0 0 0 0 0 0
         0 0 0 0 0 0 0 0 0 0 0 0 0
     ];
-T=taskset([1 1 1 1 1 1 1 1 1 1 1 1 1],prec);
+T=torsche.taskset([1 1 1 1 1 1 1 1 1 1 1 1 1],prec);
 
 disp(' ');
 disp('An instance of the scheduling problem:');
 get(T)
 
 %solve the problem
-TS=coffmangraham(T,p);
+TS=torsche.coffmangraham(T,p);
 
 title('Scheduled obtained by Hu`s algorithm');
 plot(TS);

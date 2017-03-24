@@ -47,7 +47,7 @@ function schout = loadobj(schin)
 % Suite 330, Boston, MA 02111-1307 USA
 
  
-if isa(schin,'schedobj')
+if isa(schin,'torsche.schedobj')
     schout = schin;
 else %taskin is ol version
     switch schin.version

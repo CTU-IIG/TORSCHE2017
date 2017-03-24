@@ -62,7 +62,7 @@ if isa(S1,'struct')
     sch_start_1 = S1.schStart;
     sch_length_1 = S1.schLength;
     sch_processor_1 = S1.schProcessor;
-elseif isa(S1,'taskset')
+elseif isa(S1,'torsche.taskset')
     [sch_start_1,sch_length_1,sch_processor_1] = get_schedule(S1);
 else
     error('Function schCompare is available only for structure or taskset variables.')
@@ -73,7 +73,7 @@ if isa(S2,'struct')
     sch_start_2 = S2.schStart;
     sch_length_2 = S2.schLength;
     sch_processor_2 = S2.schProcessor;
-elseif isa(S2,'taskset')
+elseif isa(S2,'torsche.taskset')
     [sch_start_2,sch_length_2,sch_processor_2] = get_schedule(S2);
 else
     error('Function schCompare is available only for structure or taskset variables.')

@@ -57,7 +57,7 @@ function value = getdata(n,property)
 
 
 value = 0;
-if ~isa(n,'node')
+if ~isa(n,'torsche.node')
     error('1st parameter must be node.');
 end
 if ~isa(property,'char')

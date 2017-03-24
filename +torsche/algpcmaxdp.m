@@ -72,7 +72,7 @@ function [TS] = algpcmaxdp(T, prob, No_Proc)
  p=T.ProcTime; %processing times
  x=zeros(1,m); 
  indexer=zeros(1,length(p)+1); 
- C = schparam(listsch(T,problem('P|prec|Cmax'),No_Proc),'Cmax');      %Calculate Upper bound of Cmax
+ C = schparam(torsche.listsch(T,torsche.problem('P|prec|Cmax'),No_Proc),'Cmax');      %Calculate Upper bound of Cmax
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  

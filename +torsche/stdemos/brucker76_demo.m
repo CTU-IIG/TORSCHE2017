@@ -60,7 +60,7 @@ disp('------------------------------------------------------');
 load brucker76_demo
 
 %Conversion intree -> taskset
-T=taskset(g,'n2t',@node2task,'DueDate');
+T=torsche.taskset(g,'n2t',@node2task,'DueDate');
 
 
 disp(' ');
@@ -69,10 +69,10 @@ get(T)
 
 
 %definition of problem to be solved 
-prob = problem('P|in-tree,pj=1|Lmax');
+prob = torsche.problem('P|in-tree,pj=1|Lmax');
 
 %Brucker's algorithm
-TS = brucker76(T,prob,4);
+TS = torsche.brucker76(T,prob,4);
 
 %plot of the final schedule
 plot(TS,'proc',1); 

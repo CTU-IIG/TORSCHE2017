@@ -64,7 +64,7 @@ function [S] = cpshopscheduler(S, p)
 
  
 
-if isa(S,'shop') && isa(p,'problem')
+if isa(S,'torsche.shop') && isa(p,'torsche.problem')
 	JS = 'J';
 	FS = 'F';
 	OS = 'O';

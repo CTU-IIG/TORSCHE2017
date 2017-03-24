@@ -61,7 +61,7 @@ function gOut = setdata(gIn,property,value)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if ~isa(gIn,'graph')
+if ~isa(gIn,'torsche.graph')
     error('1st parameter must be graph.');
 end
 if ~isa(property,'char')
@@ -156,7 +156,7 @@ function gOut = createedges(gOut,edgeList)
             end
         end
         [num_edges, num_paramsEdgePlusTwo] = size(edgeList);
-        E(1:num_edges) = edge;        % creating edges
+        E(1:num_edges) = torsche.edge;        % creating edges
         for i = 1:num_edges
             E(i).UserParam = edgeList(i,3:num_paramsEdgePlusTwo);           
             eps(i,:) = [edgeList{i,1:2}];

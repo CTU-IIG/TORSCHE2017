@@ -823,7 +823,7 @@ function loaddatafromobject(hPropEditor,hObject,type)
                 set(hProperties(i+1),'String',value2str(value.nodes));
                 set(hProperties(i+2),'String',value2str(value.edges));
             case 'color'
-                if iscolor(value),
+                if torsche.iscolor(value),
                     set(hProperties(i),'BackgroundColor',value,'CData',...
                         getcdataforbutton(value,get(hProperties(i),'Position')));
                 else
@@ -872,7 +872,7 @@ function changegraphicparams(hLabels,hProperties)
                 case {'x', 'y', 'width', 'height'}
                     set(hProperties(j),'String',value2str(value),'Enable','on');
                 case {'facecolor', 'edgecolor'}
-                    if iscolor(value),
+                    if torsche.iscolor(value),
                         set(hProperties(j),'BackgroundColor',value,'CData',...
                             getcdataforbutton(value,get(hProperties(j),'Position')),'Enable','on');
                     else
@@ -1181,7 +1181,7 @@ function setdatatypesproperty_callback(hControl,eventData,type)
 
 function setcolorproperty_callback(hControl,eventData,varargin)
     color = uisetcolor(get(hControl,'Backgroundcolor'),'PropEditor - palette');
-    if iscolor(color),
+    if torsche.iscolor(color),
         set(hControl,'Backgroundcolor',color,...
                      'CData',getcdataforbutton(color,get(hControl,'Position')));
         figureData = get(get(hControl,'Parent'),'UserData');

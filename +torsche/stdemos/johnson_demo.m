@@ -60,7 +60,7 @@ function varargout = johnson_demo
 
 PFS = [1 2; 1 2; 1 2; 1 2];
 PTFS = [7 3; 5 4; 6 6; 8 6];
-sh = shop(PTFS,PFS);
+sh = torsche.shop(PTFS,PFS);
 sh.type = 'F';
 ts = shop2taskset(sh);
 yax = {};
@@ -70,8 +70,8 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-pr = problem('F2||Cmax');
-sh = johnson(sh,pr);
+pr = torsche.problem('F2||Cmax');
+sh = torsche.johnson(sh,pr);
 if nargout == 3
 	varargout{1}=PTFS;
 	varargout{2}=PFS;

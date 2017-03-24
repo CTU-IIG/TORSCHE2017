@@ -53,14 +53,14 @@ disp('------------------------------------------------------');
 
 
 %define problem
-p = problem('1||sumUj'); 
+p = torsche.problem('1||sumUj'); 
 
 % Example for Hodgson's algortihm from Blazewicz - Scheduling Computer and Manufacturing Processes
 %  2. edition, page 47, (example 3.3.3 from Pinedo, Scheduling - Theory, Algorithms
 %  and Systems)
 
 %create set of tasks
-T = taskset([7 8 4 6 6]);
+T = torsche.taskset([7 8 4 6 6]);
 T.DueDate = [9 17 18 19 21];
 T.Name = {'t1', 't2', 't3', 't4', 't5'};
 
@@ -75,7 +75,7 @@ plot(T);
 title('Tasks to be scheduled (example 3.3.3 - Pinedo, Scheduling, 2002)');
 
 %call a scheduling algorithm
-TS = alg1sumuj(T,p);
+TS = torsche.alg1sumuj(T,p);
 
 %display results
 subplot(2,1,2)

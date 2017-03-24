@@ -53,7 +53,7 @@ clear all;
 destDir = prefdir;
 
 %Define taskset and add code for tasks
-T = taskset([3 1 3 1 1 3 1 1]);
+T = torsche.taskset([3 1 3 1 1 3 1 1]);
 adduserparam(T,'dsvf.txt');
 
 %Define period of tasks
@@ -70,10 +70,10 @@ stopTime = 1;
 sampleTime = 1/220000;
 
 %Define inputs and outputs for S-Function block
-ports = visiscontrolports('Input','I',1,'Output','L',1);
+ports = torsche.visiscontrolports('Input','I',1,'Output','L',1);
 
 %Call main function
-taskset2simulink('dsvf', T, ports, [], stopTime, destDir, 'Period', period, ...
+torsche.taskset2simulink('dsvf', T, ports, [], stopTime, destDir, 'Period', period, ...
                  'Sample', sampleTime, 'Simulink', 'off');
 
 %Open simulink model

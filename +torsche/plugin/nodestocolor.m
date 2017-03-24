@@ -1,5 +1,5 @@
 function g = nodestocolor(g)
-    if isa(g,'graph')
+    if isa(g,'torsche.graph')
         color = uisetcolor('Graphedit - palette');
         if (length(color) ~= 1)
             for i = 1:length(g.N)

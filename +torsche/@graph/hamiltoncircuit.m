@@ -110,8 +110,8 @@ At(sub2ind(size(At),to'+e+1,(1:m)+2*n))=-1;
 
 % solving with LP solver
 sense=1; %minimalize
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',1);
-[xmin,fmin,status,extra] = ilinprog (schoptions,sense,c,At',b,ctype,lb,ub,vartype);
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',1);
+[xmin,fmin,status,extra] = torsche.ilinprog (schoptions,sense,c,At',b,ctype,lb,ub,vartype);
 
 % process result
 if(status==1)

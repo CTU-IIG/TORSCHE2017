@@ -141,7 +141,7 @@ while i<=len
                     end
                 end
 
-                if isa(Value,'taskset')
+                if isa(Value,'torsche.taskset')
                     reindexing_index = index(i).subs{1};
                     tmp_tasks = get(Value,'tasks');
                     set(Value,'tasks',{tmp_tasks{reindexing_index}});

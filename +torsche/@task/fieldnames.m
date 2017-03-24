@@ -56,7 +56,7 @@ function [Props,AsgnVals,DefVal] = fieldnames(task)
  
 
 % Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(getfield(struct(task), task.parent));
+[Props,AsgnVals,DefVal] = fieldnames(task.parent);
 
 % Add TASK properties
 Props = {'Name' 'ProcTime' 'ReleaseTime' 'Deadline' 'DueDate' 'Weight' 'Processor' 'UserParam' Props{:}}; %'ALAP' 'ASAP'

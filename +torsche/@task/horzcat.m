@@ -50,7 +50,7 @@ function setoftasks = horzcat(varargin)
 
  
 try
-    setoftasks = taskset(varargin);
+    setoftasks = torsche.taskset(varargin);
 catch
     rethrow(lasterror)
 end

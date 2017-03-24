@@ -70,7 +70,7 @@ function visiscontrolcode(file, TS, ports, VRin, dispVR, destDir)
 %amount of user states
 nStates = 0;
 nTasks = 0;
-if isa(TS,'shop')
+if isa(TS,'torsche.shop')
     nJobs = size(TS.jobs,2);
     for i = 1:nJobs
         nStates = nStates + cntStates(TS.jobs{i});
@@ -136,7 +136,7 @@ while 1
         tline = fgets(fid); %#ok - jumps over one row
         tline = fgets(fid); %#ok - jumps over one row
     else if strcmp(tline(1:end-2),'x0  = [];')
-            if isa(TS,'shop')
+            if isa(TS,'torsche.shop')
                 str = 'start = [];';
                 fprintf(fid2, '%s\n', str);
                 str = 'stop = [];';
@@ -227,7 +227,7 @@ end
 
 fprintf(fid2, '\n'); 
 
-if isa(TS,'shop')
+if isa(TS,'torsche.shop')
     for k = 1:nJobs
         curTS = TS.jobs{k};
         for i = 1:size(curTS)

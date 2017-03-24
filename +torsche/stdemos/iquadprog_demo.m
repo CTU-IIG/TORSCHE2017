@@ -84,10 +84,10 @@ lb=[0; 0; 0; 0];                        % lower bound on variables
 ub=[1; 1; 1; 1];                        % upper bound on variables
 vartype=['C' 'C' 'C' 'B']';             % variable type
 
-schoptions=schoptionsset('miqpSolver','miqp','solverVerbosity',0);   %ILP solver options (use default values)
+schoptions=torsche.schoptionsset('miqpSolver','miqp','solverVerbosity',0);   %ILP solver options (use default values)
 
 disp('The solution is:');
-[xmin,fmin,status,extra] = iquadprog(schoptions,1,H,c,A,b,ctype,lb,ub,vartype)
+[xmin,fmin,status,extra] = torsche.iquadprog(schoptions,1,H,c,A,b,ctype,lb,ub,vartype)
 
 
 % end .. IQUADPROG_DEMO

@@ -101,7 +101,7 @@ for  i=1:size(t.Schedule,1)
     else
         processingTime = t.EmptyMovingTimes{procID}(from,to);
     end
-	t1 = task(sprintf('%s \\rightarrow %s',int2str(from), int2str(to)), processingTime,0);
+	t1 = torsche.task(sprintf('%s \\rightarrow %s',int2str(from), int2str(to)), processingTime,0);
 	t1.Processor = procID;
 	if isempty(out)
 		out = t1;

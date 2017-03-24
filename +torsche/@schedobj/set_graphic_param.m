@@ -71,10 +71,10 @@ function set_graphic_param(obj, varargin)
 objectname = inputname(1);
 if isfield(struct(obj),'parent')
     objs = struct(obj);
-    objparent = getfield(objs,objs.parent);
+    objparent = objs.parent;
     set_graphic_param(objparent, varargin{:});
   %  obj = set_helper(obj,objs.parent,objparent);
-   eval(['obj = ' class(obj) '(obj,objs.parent, objparent);']);
+   eval(['obj = ' class(obj) '(obj, ''parent'', objparent);']);
 
 else
     ni = length(varargin);

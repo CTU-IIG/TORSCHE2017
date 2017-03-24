@@ -66,7 +66,7 @@ DIRECTION = 5;
 
 PFS = [1 2; 1 2; 1 2; 1 2];
 PTFS = [1 1; 1 1; 1 1; 1 1];
-tr = transportrobots({[inf 3; inf inf], [inf 1; inf inf], [inf 0; inf inf], [inf 4; inf inf]});
+tr = torsche.transportrobots({[inf 3; inf inf], [inf 1; inf inf], [inf 0; inf inf], [inf 4; inf inf]});
 tr.schedule = 1;
 robotSchedule = zeros(4, 5);
 for i = 1:4
@@ -77,8 +77,8 @@ for i = 1:4
     robotSchedule(i, DIRECTION) = 2;
 end
 
-tr = set(tr, 'schedule', robotSchedule);
-inputShop = shop(PTFS, PFS);
+set(tr, 'schedule', robotSchedule);
+inputShop = torsche.shop(PTFS, PFS);
 inputShop.type = 'F';
 inputShop.robots = tr;
 ts = shop2taskset(inputShop);
@@ -89,8 +89,8 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-inputProblem = problem('F2|pj=1|Cmax');
-scheduledShop = algf2r1pijtjcmax(inputShop, inputProblem);
+inputProblem = torsche.problem('F2|pj=1|Cmax');
+scheduledShop = torsche.algf2r1pijtjcmax(inputShop, inputProblem);
 if nargout == 2
     varargout{1} = inputShop;
     varargout{2} = scheduledShop;

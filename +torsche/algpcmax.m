@@ -121,12 +121,12 @@ for i=2:m*n+1
 	vartype = [vartype;'I'];
 end
 
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',0);
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',0);
 
 %type of optimalization: 1=minimalization, -1=maximalization
 sense=1;											
 
-[xmin,fmin,status,extra] = ilinprog (schoptions,sense,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.ilinprog (schoptions,sense,c,A,b,ctype,lb,ub,vartype);
 
 if(status==1)
     C_max = xmin(m*n+1);

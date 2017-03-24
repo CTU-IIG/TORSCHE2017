@@ -59,5 +59,5 @@ function object = set_helper(object, property, value)
 if (isfield(struct(object), property))
     eval(['object.' property '=value;']);    
 else
-    eval(['object.' object.parent ' = ' object.parent '(object.' object.parent ', property, value);']);
+    eval(['object.parent = ' class(object.parent) '(object.parent, property, value);']);
 end   

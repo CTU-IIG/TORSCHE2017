@@ -163,7 +163,7 @@ set(0,'CurrentFigure',HGRAPHEDITMAINFIGURE);
 returnValue = HGRAPHEDITMAINFIGURE;
 
 for i = 1:nargin
-    if isa(varargin{i},'graph')
+    if isa(varargin{i},'torsche.graph')
         % draw graph
         set(HGRAPHEDITMAINFIGURE,'handlevisibility','on');
         hAxes = get(HGRAPHEDITMAINFIGURE,'CurrentAxes');
@@ -235,7 +235,7 @@ for i = 1:nargin
                     case {'actualtab'}
                         returnValue = getactualtab;
                     case {'drawintab'}
-                        if isa(varargin{j+1},'graph'),
+                        if isa(varargin{j+1},'torsche.graph'),
                             replacegraph(HGRAPHEDITMAINFIGURE,getactualtab,varargin{j+1});
                         else
                             error('The second parameter has to be graph class.');
@@ -718,7 +718,7 @@ uipushtool(hToolbar, 'TooltipString','About', 'ClickedCallback',{@grapheditabout
 
 function im = getcdata(pictureName)
 color = 255*get(0,'factoryUicontrolBackgroundColor');
-im = imread(pictureName);
+im = imread(['+torsche/', pictureName]);
 [height,width,colors] = size(im);
 for i = 1:height
     for j = 1:width
@@ -2976,7 +2976,7 @@ lineStructure = struct(...
 set(hEdge,'UserData',lineStructure);
 if nargin == 4
     copyobjectparams(hEdge,varargin{1});
-    if iscolor(varargin{1}.Color)
+    if torsche.iscolor(varargin{1}.Color)
         set(hEdge,'Color',varargin{1}.Color);
     end
     if isnumeric(varargin{1}.LineWidth)&&isscalar(varargin{1}.LineWidth)
@@ -4649,7 +4649,7 @@ data = get(handles(1),'UserData');
 fNames = fieldnames(data.objectparams);
 for i = 1:length(handles),
     data = get(handles(i),'UserData');
-    if isa(list,'graph')
+    if isa(list,'torsche.graph')
         for j = 1:length(fNames)
             eval(['list.' fNames{j} ' = data.objectparams.' fNames{j} ';'])
         end
@@ -4660,7 +4660,7 @@ for i = 1:length(handles),
         %             try
         %                 list{i}.GraphicParam = getstructureposition(data.allobjects);
         %             catch
-        if isa(list{1},'edge')
+        if isa(list{1},'torsche.edge')
             try
                 list{i}.Position = getstructurelittlepoints(data.vectors);
             catch
@@ -4769,7 +4769,7 @@ canvasData.node = nodes;
 canvasData.eps = eps;
 canvasData.objectparams.GridFreq = [20 20];
 color = canvasData.objectparams.Color;
-if ~iscolor(color),
+if ~torsche.iscolor(color),
     color = [1 1 1];
 end
 canvasData = adjustsliders(canvasData);
@@ -5289,7 +5289,7 @@ end
 %--------------------------------------------------------------------
 
 function returnedobject(returnedObject)
-if isa(returnedObject,'graph')
+if isa(returnedObject,'torsche.graph')
     createcanvas(gcf);
     drawobjectgraph(returnedObject,gca);
 elseif isa(returnedObject,'logical'),

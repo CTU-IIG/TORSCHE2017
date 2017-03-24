@@ -76,18 +76,26 @@ if ni==2,
     end
     
     % Loop over each queried property 
+    warning off MATLAB:structOnObject
     Nq = prod(size(Property)); 
     Value = cell(1,Nq);
     s = struct(schedobj);
+    if isa(schedobj, 'torsche.ptask')
+        s2 = struct(schedobj.parent);
+        s.ProcTime = s2.ProcTime;
+        s.Deadline = s2.Deadline;
+    end
+
     for i=1:Nq,
         % Find match for k-th property name and get corresponding
+
         % value
         try 
             Value{i} = getfield(s,AllProps{find(strcmpi(AllProps,Property{i}))});
             if (~isempty(strmatch('get_correction',methods(schedobj),'exact')))
                 Value{i} = get_correction(schedobj,Property{i},Value{i});
             end            
-            if isa(Value{i}, 'node') || isa(Value{i}, 'edge')
+            if isa(Value{i}, 'torsche.node') || isa(Value{i}, 'torsche.edge')
                 Value_i = Value{i};
                 for ii=1:length(Value_i)
                     Value_tmp{ii}=Value_i(ii);
@@ -114,8 +122,29 @@ if ni==2,
                     found = 0;
                 end
             end
+            
+            if ~found && isa(schedobj, 'torsche.taskset') 
+                [Value{i} found] = get_helper(schedobj, Property{i});
+            end
+            
+            if ~found && isa(schedobj, 'torsche.job') 
+                [Value{i} found] = get_helper(schedobj, Property{i});
+            end
+            
+            if ~found && isa(schedobj, 'torsche.shop') 
+                [Value{i} found] = get_helper(schedobj, Property{i});
+            end
+            
+            %if ~found && isa(schedobj, 'torsche.taskset')
+            %    Value{i} = [];
+            %   for k = 1:length(schedobj.tasks)
+            %       Value{i} = [Value{i}, get(schedobj.tasks{k}, Property{i})];
+            %   end
+            %   found = length(Value{i})>0;
+            %end
+            
             if ~found
-                if isa(schedobj,'graph') || isa(schedobj,'node')
+                if isa(schedobj,'torsche.graph') || isa(schedobj,'torsche.node')
                     try
                         Value{i} = getdata(schedobj,Property{i});
                     catch

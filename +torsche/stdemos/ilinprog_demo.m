@@ -77,9 +77,9 @@ lb=[0,0,0]';                %lower bounds of variables
 ub=[inf inf inf]';          %upper bounds of variables
 vartype=['I','I','I']';     %types of variables
 
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',0);   %ILP solver options (use default values)
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',0);   %ILP solver options (use default values)
 
 disp('The solution is:');
-[xmin,fmin,status,extra] = ilinprog(schoptions,-1,c,A,b,ctype,lb,ub,vartype)
+[xmin,fmin,status,extra] = torsche.ilinprog(schoptions,-1,c,A,b,ctype,lb,ub,vartype)
 
 % end .. ILINPROG_DEMO

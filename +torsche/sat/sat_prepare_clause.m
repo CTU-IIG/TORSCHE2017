@@ -68,7 +68,7 @@ fprintf('done.\n');
 
 % no-family
 fprintf('No-family preparing: ');
-g = graph('adj',T.Prec);
+g = torsche.graph('adj',T.Prec);
 nevrodine=[];
 for v = 1:size(T)
     fprintf('.');

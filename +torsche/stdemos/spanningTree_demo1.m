@@ -56,34 +56,34 @@ disp('Demo of spanningTree algorithm.');
 alg = input('Choice kruskal(1),prim(2),boruvka(3): ');
 disp('-------------------------------------------');
 
-close(graphedit);
+close(torsche.graphedit);
 monitor = get(0,'ScreenSize');
 height = 497;
 width = 827;
 colors = 1;
-graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
+torsche.graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
     'hideparts','all','viewnodesnames','off','propertyeditor','off')
 
 %======================================================================
 
 
 %  slide 1
-g = graph('adj',zeros(9));
+g = torsche.graph('adj',zeros(9));
 x = [510; 361; 172; 376; 521; 113; 730; 561; 686];
 y = [458; 75; 205; 365; 320; 376; 374; 163; 154];
 for i = 1:length(g.N),
     g.N(i).GraphicParam{1}.x = x(i);
     g.N(i).GraphicParam{1}.y = y(i);
 end
-graphedit(g,'viewtab',1, 'arrowsvisibility','off');
+torsche.graphedit(g,'viewtab',1, 'arrowsvisibility','off');
 %g.N(i).Color = [1 0.5 0];
 
 % slide 2
 % edgeList = {1 4;1 7;2 3;3 4;4 5;4 7;6 8;5 9;6 1;3 6;3 8;7 8;7 9};
 edgeList ={1 4,2;1 7,1;2 3,5;3 4,4;4 5,3;6 1,15;4 7,7;6 8,6;5 9,9;3 6,8;...
     3 8,10;7 8,14;7 9,11};
-g = graph(g,'edl',edgeList,'edgeDatatype',{'double'});
-graphedit(g,'viewtab',1)
+g = torsche.graph(g,'edl',edgeList,'edgeDatatype',{'double'});
+torsche.graphedit(g,'viewtab',1)
 
 if alg == 1
     [spanningTree usedEdges] = kruskal(g);
@@ -103,14 +103,14 @@ if alg == 3
         g.E(usedEdges(1, one(i))).Color=[1 0 0];
         g.E(usedEdges(1, one(i))).LineWidth=2;
     end
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
     % slide 4
     two = find(usedEdges(2,:)==2);
     for i=1:length(two)
         g.E(usedEdges(1, two(i))).Color=[1 0 0];
         g.E(usedEdges(1, two(i))).LineWidth=2;
     end
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
 
 else
@@ -120,56 +120,56 @@ else
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,1)) = e;
     g.E(usedEdges(1, 1)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 4
     e = g.E(usedEdges(1,2));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,2)) = e;
     g.E(usedEdges(1, 2)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 5
     e = g.E(usedEdges(1,3));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,3)) = e;
     g.E(usedEdges(1, 3)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 6
     e = g.E(usedEdges(1,4));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,4)) = e;
     g.E(usedEdges(1, 4)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 7
     e = g.E(usedEdges(1,5));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,5)) = e;
     g.E(usedEdges(1, 5)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 8
     e = g.E(usedEdges(1,6));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,6)) = e;
     g.E(usedEdges(1, 6)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 9
     e = g.E(usedEdges(1,7));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,7)) = e;
     g.E(usedEdges(1, 7)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 
     % slide 10
     e = g.E(usedEdges(1,8));
     set(e,'Color',[1 0 0]);
     g.E(usedEdges(1,8)) = e;
     g.E(usedEdges(1, 8)).LineWidth=2;
-    graphedit(g,'viewtab',1)
+    torsche.graphedit(g,'viewtab',1)
 end
 
 % slide 11
@@ -180,7 +180,7 @@ for i =1:length(u)
     set(e,'UserParam',{});
     g.E(u(i)) = e;
 end
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 % slide 12
 u = [6 7 11 12 13];
@@ -189,7 +189,7 @@ for i =1:length(u)
     set(e,'Color',[1 1 1]);
     g.E(u(i)) = e;
 end
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 % slide 13
 %graphedit(g,'viewtab',1)
@@ -201,12 +201,12 @@ graphedit(g,'viewtab',1)
 %======================================================================
 % slideshow
 for i =1:13,
-    graphedit('viewtab',i);
+    torsche.graphedit('viewtab',i);
     pause(3.0);
 end
 for i = 1,
-    graphedit('viewtab',11); pause(1);
-    graphedit('viewtab',12); pause(1);
+    torsche.graphedit('viewtab',11); pause(1);
+    torsche.graphedit('viewtab',12); pause(1);
 end
 
-graphedit(g)
+torsche.graphedit(g)

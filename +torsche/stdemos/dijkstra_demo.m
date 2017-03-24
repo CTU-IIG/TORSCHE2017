@@ -60,10 +60,10 @@ A = [0   1   2   inf 7;
      inf 9   0   1   1;
      8   5   inf 0   inf;
      7   inf 4   5   0  ]
-g = graph(A);
+g = torsche.graph(A);
 g.Name = 'G_{1}';
 
-graphedit(g);
+torsche.graphedit(g);
 
 %define reference node
 ref = 2;

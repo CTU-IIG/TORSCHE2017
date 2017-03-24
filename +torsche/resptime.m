@@ -54,7 +54,7 @@ function [R, schedulable]=resptime(taskset)
 
 for i = 1:length(taskset.tasks),
     ptask = taskset.tasks(i);
-    if isa(ptask, 'ptask')
+    if isa(ptask, 'torsche.ptask')
 
         C(i)=get(ptask,'ProcTime'); %C is row vector of computation times
         T(i)=get(ptask,'Period');   %T is row vector of periods

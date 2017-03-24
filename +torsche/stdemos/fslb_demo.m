@@ -65,11 +65,11 @@ function varargout = fslb_demo
   Fs=[1 2 5 12;1 2 5 12;1 2 5 12;1 2 5 12];
   Proc = [1 2 3 4; 1 2 3 4; 1 2 3 4; 1 2 3 4];
   Bf=[1 1 1 1];
-  s = shop(Fs, Proc);%Create shop object 
-  l = limitedbuffers('input',Bf);%Create limitedBuffers object
+  s = torsche.shop(Fs, Proc);%Create shop object 
+  l = torsche.limitedbuffers('input',Bf);%Create limitedBuffers object
   s.limitedBuffers = l;
-  p = problem('F||Cmax');
-  fs=fslb(s,p);
+  p = torsche.problem('F||Cmax');
+  fs=torsche.fslb(s,p);
   if nargout==0
   	  disp('Flow-shop with limited buffers');
 	  disp('Processing time:')

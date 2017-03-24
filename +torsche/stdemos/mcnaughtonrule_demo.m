@@ -57,7 +57,7 @@ disp('------------------------------------------------------');
 
 
 %definition of taskset
-T=taskset([11 23 9 4 9 33 12 22 25 20]);
+T=torsche.taskset([11 23 9 4 9 33 12 22 25 20]);
 T.Name={'t_1' 't_2' 't_3' 't_4' 't_5' 't_6' 't_7' 't_8' 't_9' 't_1_0' };
 
 disp(' ');
@@ -66,10 +66,10 @@ get(T)
 
 
 %definition of problem to be solved 
-p = problem('P|pmtn|Cmax');
+p = torsche.problem('P|pmtn|Cmax');
 
 %McNaughton algorithm
-T = mcnaughtonrule(T,p,4);
+T = torsche.mcnaughtonrule(T,p,4);
 
 %plot of the final schedule
 plot(T,'proc',1); 

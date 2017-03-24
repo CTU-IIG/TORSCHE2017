@@ -58,7 +58,7 @@ end
 
 v_adj = adj(G);
 adj_new = v_adj(nodes, nodes);
-subgraph = graph('adj',adj_new);
+subgraph = torsche.graph('adj',adj_new);
 
 % move nodes
 for i = 1 : length (nodes)

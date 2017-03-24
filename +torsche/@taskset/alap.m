@@ -98,7 +98,7 @@ else
     error('Input argument "UB" is undefined.');
 end
 
-g = graph('adj',[this.Prec, ones(size(this),1);zeros(1,size(this)+1)]); % ones(... virtual node for last task
+g = torsche.graph('adj',[this.Prec, ones(size(this),1);zeros(1,size(this)+1)]); % ones(... virtual node for last task
 for i = 1 : size(this)
     to=find(this.Prec(i,:));
     for ii = 1 : length(to)

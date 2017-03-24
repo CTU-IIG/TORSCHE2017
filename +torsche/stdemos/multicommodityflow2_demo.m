@@ -52,15 +52,17 @@
 clear all;
 clc;
 disp('Demo of multicommodityflow algorithm');
-alg = input('Choice [1] multicommodityflow, [2] maxmulticommodityflow: ');
-if alg == 1
-   b = input('Choice [1] b=[4.7;10;10], [2] b=[4.7;7143;15.7143], [3] b=[11;10;10]: ');
-else
-    b= 0;
-end
+%alg = input('Choice [1] multicommodityflow, [2] maxmulticommodityflow: ');
+%if alg == 1
+%   b = input('Choice [1] b=[4.7;10;10], [2] b=[4.7;7143;15.7143], [3] b=[11;10;10]: ');
+%else
+%    b= 0;
+%end
+alg = 2;
+b = 0;
 disp('-------------------------------------------');
 
-close(graphedit);
+close(torsche.graphedit);
 
 picturePath = [fileparts(mfilename('fullpath')) filesep];
 cDataClean = imread([picturePath 'mapaDemo.png']);
@@ -69,14 +71,14 @@ monitor = get(0,'ScreenSize');
 height = 440;
 width = 820;
 colors = 1;
-graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
+torsche.graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
    'hideparts','all','viewnodesnames','off','propertyeditor','off','viewnodesuserparams','on');
 
 
 %==========================================================================
 
 % slide 1
-graphedit('importbackground',cDataClean,'fitbackground','width')
+torsche.graphedit('importbackground',cDataClean,'fitbackground','width')
 
 
 %  slide 2
@@ -99,7 +101,7 @@ for i = 1:length(g.N)
     g.N(i).GraphicParam{1}.x = g.N(i).GraphicParam(1).x + 7;
     g.N(i).GraphicParam{1}.y = g.N(i).GraphicParam(1).y + 21;
 end
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 
 % slide 3
@@ -118,7 +120,7 @@ g.N(s(3)).userParam{1} = 7;
 g.N(t(3)).Color = [0.20 0.75 0.25]; 
 g.N(t(3)).userParam{1} = 12;
 
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 
 % slide 4
@@ -132,7 +134,7 @@ for i = 1:length(sokolska)
     g.E(sokolska(i)).Color = [0.20 0.75 0.25];
     g.E(sokolska(i)).lineWidth = 2.5;
 end
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 % slide 5
 if b == 1
@@ -154,7 +156,7 @@ elseif b == 3
     disp('g;s = [1 5 7];t = [11 6 12];b = [11;10;10];');
     disp('gmcf = multicommodityflow(g,s,t,b,''allShortest'');');
 elseif alg == 1
-     close(graphedit);
+     close(torsche.graphedit);
      error ('TORSCHE:graph:wrongparamtype',...
             'Input parameter must be {1,2,3}!');
 end
@@ -164,7 +166,7 @@ if alg == 2
     disp('g;s = [1 5 7];t = [11 6 12];');
     disp('gmcf = maxmulticommodityflow(g,s,t,''allShortest'');');
 elseif alg ~= 2 && alg ~= 1
-    close(graphedit);
+    close(torsche.graphedit);
     error ('TORSCHE:graph:wrongparamtype',...
             'Input parameter must be {1,2}!');
 end
@@ -189,19 +191,19 @@ for j = 3:maxUserParam
     end
    end
 end
-graphedit(gmcf,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(gmcf,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 
 %==========================================================================
 
 % slideshow
 for i =1:6,
-    graphedit('viewtab',i);
+    torsche.graphedit('viewtab',i);
     pause(3.0);
 end
 for i = 1,
-    graphedit('viewtab',4); pause(2);
-    graphedit('viewtab',6); pause(1);
+    torsche.graphedit('viewtab',4); pause(2);
+    torsche.graphedit('viewtab',6); pause(1);
 end
 
-graphedit('viewtab',6);
+torsche.graphedit('viewtab',6);

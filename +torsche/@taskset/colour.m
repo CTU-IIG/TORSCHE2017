@@ -78,7 +78,7 @@ if ni>1
     colors_in = varargin{1};
     if iscell(colors_in)
         for i=1:length(colors_in) 
-            if ~iscolor(colors_in{i}) 
+            if ~torsche.iscolor(colors_in{i}) 
                 error('No valid color!');
             end
         end
@@ -89,7 +89,7 @@ if ni>1
     elseif isnumeric(colors_in)
         if size(colors_in,2) == 3
             for i = 1:size(colors_in,1)
-                if ~iscolor(colors_in(i,:)) 
+                if ~torsche.iscolor(colors_in(i,:)) 
                     error('No valid color!');
                 end
             end
@@ -101,7 +101,7 @@ if ni>1
             error('No valid color format!');
         end
     elseif ischar(colors_in);
-        if iscolor(colors_in)
+        if torsche.iscolor(colors_in)
             colors = {};
             for i = 1:count(TS)
                 colors{i} = colors_in;
@@ -114,7 +114,7 @@ if ni>1
     end
 else        
     %colors = colorcube(count(TS)+8);
-    colors = colorfromcolormap(count(TS));
+    colors = torsche.colorfromcolormap(count(TS));
 end
 
 for i = 1:count(TS)

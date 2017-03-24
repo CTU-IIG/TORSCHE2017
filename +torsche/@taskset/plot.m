@@ -237,7 +237,7 @@ if setcol == 0
     col = ones(length(T.tasks),3);
 else
     %col = colorcube(length(T.tasks)+8);
-    col = colorfromcolormap(length(T.tasks));
+    col = torsche.colorfromcolormap(length(T.tasks));
 end
 for i=1:length(T.tasks)
     taskforcolor = T.tasks{i};
@@ -245,7 +245,7 @@ for i=1:length(T.tasks)
     taskcolor = col(i,:);
     if setcol == 1
         taskdefininedcolor = get_graphic_param(taskforcolor,'color');
-        if ~isempty(taskdefininedcolor) && iscolor(taskdefininedcolor)
+        if ~isempty(taskdefininedcolor) && torsche.iscolor(taskdefininedcolor)
             taskcolor = taskdefininedcolor;
         end
     end
@@ -334,7 +334,7 @@ for i=1:length(T.tasks)
     I=ind(i);
     task = T.tasks{I};
     
-    if isa(task, 'ptask')
+    if isa(task, 'torsche.ptask')
         handleOut(i) = plot(task,'movtop',(mov_top_max+mov_top_max_rotation*mov_top{I})*distance,'texton',0,'maxtime', max_time,'textin',textin,'asap',asapdraw,'period',0,'textins',textins,'timeMultiple',timeMultiple,'timeOffset',timeOffset);
     else
         handleOut(i) = plot(task,'movtop',(mov_top_max+mov_top_max_rotation*mov_top{I})*distance,'texton',0,'textin',textin,'asap',asapdraw,'period',0,'textins',textins,'timeMultiple',timeMultiple,'timeOffset',timeOffset);
@@ -385,7 +385,7 @@ if grouped
         procname{i}=strcat('Processor ',num2str(i));
     end
 else
-    procname=schfeval('private/tex2mtex',get(T, 'Name'));
+    procname=torsche.schfeval('private/tex2mtex',get(T, 'Name'));
     procname=procname(ind);
 end
 
@@ -435,7 +435,7 @@ if prec_draw
             y_from = distance*(mov_top_max+mov_top_max_rotation*mov_top_from(end))+height_of_block*(length(a)-I+2)/(length(a)+2);
             y_to = distance*(mov_top_max+mov_top_max_rotation*mov_top_to(1))+height_of_block*(length(a)-I+2)/(length(a)+2);
 
-            [x,y]=schfeval('private/bezier.m',x_from,y_from,x_from+3,y_from,x_to-3,y_to,x_to,y_to);
+            [x,y]=torsche.schfeval('private/bezier.m',x_from,y_from,x_from+3,y_from,x_to-3,y_to,x_to,y_to);
             plot(x,y,'k',x_from,y_from,'k>',x_to,y_to,'k>');
         end
     end

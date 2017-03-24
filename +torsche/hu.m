@@ -67,13 +67,13 @@ function T = hu (T, prob, m, varargin)
 % to the Free Software Foundation, Inc., 59 Temple Place,
 % Suite 330, Boston, MA 02111-1307 USA
 
-if ~isa(T,'taskset')
+if ~isa(T,'torsche.taskset')
     error('Taskset class must be taskset');
 end
 if ~(isa(m,'double')&m>0)
     error('Number of processors must be positive number.');
 end
-if ~isa(prob,'problem')
+if ~isa(prob,'torsche.problem')
     error('Problem class must be problem.');
 end
 if ~((is(prob,'alpha','P') && is(prob,'betha','in-tree,pj=1') && is(prob,'gamma','Cmax')) | ...

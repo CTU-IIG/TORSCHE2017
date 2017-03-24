@@ -47,7 +47,7 @@ function nodeout = loadobj(nodein)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if isa(nodein, 'node')
+if isa(nodein, 'torsche.node')
     nodeout = nodein;
 else %nodein is old version
     num = length(nodein);

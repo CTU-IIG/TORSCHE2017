@@ -51,17 +51,16 @@ function setoftasks = horzcat(varargin)
 % to the Free Software Foundation, Inc., 59 Temple Place,
 % Suite 330, Boston, MA 02111-1307 USA
 
-
 ni = nargin;
-if isa(varargin{1},'task')
+if isa(varargin{1},'torsche.task')
     setoftasks = [varargin{1}];
-elseif  isa(varargin{1},'taskset')
+elseif  isa(varargin{1},'torsche.taskset')
     setoftasks = varargin{1};
 end
 for i = 2:ni
-    if isa(varargin{i},'task')
+    if isa(varargin{i},'torsche.task')
         addto = [varargin{i}];
-    elseif  isa(varargin{i},'taskset')
+    elseif  isa(varargin{i},'torsche.taskset')
         addto = varargin{i};
     end
     setoftasks.Prec = blkdiag(get(setoftasks,'Prec'), get(addto,'Prec')); % Must be use function GET - get_cerrection() function will be call!

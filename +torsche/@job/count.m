@@ -1,15 +1,17 @@
-function [Props,AsgnVals,DefVal] = fieldnames(taskset, varargin)
-%FIELDNAMES  All public properties and their assignable values and default
-%           value
+function c=count(T)
+%COUNT returns number of tasks in the Set of Tasks
 %
-%   [PROPS,ASGNVALS,DEFVAL] = FIELDNAMES(TASKSET[,virtualprop])
-%     PROPS       - list of public properties of the object TASKSET (a cell vector)
-%     ASGNVALS    - assignable values for these properties (a cell vector)
-%     DEFVAL      - default values
-%     virtualprop - if is set to 1 than returned values includes a virtual
-%                   property
+%Synopsis
+%  count = COUNT(T)
 %
-%   See also  SCHEDOBJ/GET, SCHEDOBJ/SET.
+%Description
+% Properties:
+%  T:
+%    - set of tasks
+%  count:
+%    - number of tasks
+%
+% See also TASKSET/SIZE
 
 
 % Author: Michal Kutil <kutilm@fel.cvut.cz>
@@ -57,44 +59,5 @@ function [Props,AsgnVals,DefVal] = fieldnames(taskset, varargin)
 % Suite 330, Boston, MA 02111-1307 USA
  
 
-% Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(taskset.parent);
-
-% TASKSET properties
-Props = {'Prec' 'schedule' 'ScheduleDesc' 'tasks' 'TSUserParam'  Props{:}}; 
-% There are also dynamic properties.  See GET_VPROP.
-
-% Get virtual properties
-%if ~isempty(varargin) & varargin{1} == 1
-    [VProps,VAsgnVals,VDefVal] = fieldnames(torsche.task(1));
-    i = 1;
-    while (i <= length(VProps))
-        if ~isempty(find(strcmp(VProps(i),Props), 1))
-            VProps = [VProps(1:i-1) VProps(i+1:length(VProps))];
-            VAsgnVals = [VAsgnVals(1:i-1) VAsgnVals(i+1:length(VAsgnVals))];
-            VDefVal = [VDefVal(1:i-1) VDefVal(i+1:length(VDefVal))];
-        end
-        i = i + 1;
-    end
-%else
-%    VProps = {}; VAsgnVals = {}; VDefVal ={};
-%end
-
-Props = {Props{:} VProps{:}};
-
-
-% Also return assignable values if needed
-if nargout>1,
-    AsgnVals = {'precedens constrains' ...
-                'schedule description'...
-                'tasks cell'...
-                'taskset user parameters'...
-                AsgnVals{:} VAsgnVals{:}};
-
-    if nargout>2,
-        DefVal = {[] '' [] DefVal{:} VDefVal{:}};
-    end
-end
-
-
-%end .. @taskset/fieldnames
+c = length(T.parent.tasks);
+%end .. @taskset/count

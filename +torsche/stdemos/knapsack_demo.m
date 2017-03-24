@@ -4,7 +4,7 @@
 %
 % See also FLOYD
 %
-% Author(s): E. Hanáková, M. Kutil
+% Author(s): E. Hanï¿½kovï¿½, M. Kutil
 % Copyright (c) 2007 CTU FEE
 % $Revision: 2199 $  $Date: 2008-02-01 16:33:58 +0100 (pÃ¡, 01 II 2008) $
 
@@ -49,51 +49,51 @@ disp ('weight = [7 6 4 3]');
 disp ('cost = [2 3 4 5]');
 disp ('maxWeight = 15');
 
-close(graphedit);
+close(torsche.graphedit);
 monitor = get(0,'ScreenSize');
 height = 700;
 width = 900;
 colors = 1;
-graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
+torsche.graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
     'hideparts','all','viewnodesnames','off','propertyeditor','off','viewnodesuserparams','on','fontsizeuserparams',8);
-graphedit('fit');
+torsche.graphedit('fit');
 
 %======================================================================
 
 %  slide 1
-graphedit('viewtab',1)
+torsche.graphedit('viewtab',1)
 
 %  slide 2
 weight = [7 6 4 3];
 cost = [2 3 4 5];
 maxWeight = 15;
-[usedSubject g] = knapsack(weight,cost,maxWeight);
-graphedit(g,'viewtab',1,'arrowsvisibility','off')
+[usedSubject g] = torsche.knapsack(weight,cost,maxWeight);
+torsche.graphedit(g,'viewtab',1,'arrowsvisibility','off')
 
 %  slide 3
 g.E(1).Color=[1 0 0];
 g.E(1).LineWidth=2;
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 %  slide 4
 g.E(4).Color=[1 0 0];
 g.E(4).LineWidth=2;
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 %  slide 5
 g.E(10).Color=[1 0 0];
 g.E(10).LineWidth=2.24;
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 %  slide 6
 g.E(29).Color=[1 0 0];
 g.E(29).LineWidth=2;
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 %  slide 7
 g.E(28).Color=[1 0 0];
 g.E(28).LineWidth=2.24;
-graphedit(g,'viewtab',1)
+torsche.graphedit(g,'viewtab',1)
 
 
 
@@ -102,12 +102,12 @@ graphedit(g,'viewtab',1)
 % slideshow
 
 for i =1:2
-    graphedit('viewtab',i);
+    torsche.graphedit('viewtab',i);
     pause(4.0);
 end
 
 for i =3:7,
-    graphedit('viewtab',i);
+    torsche.graphedit('viewtab',i);
     pause(2.0);
 end
 

@@ -57,7 +57,7 @@ function [Props,AsgnVals,DefVal] = fieldnames(ptask)
  
 
 % Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(ptask.task);
+[Props,AsgnVals,DefVal] = fieldnames(ptask.parent);
 
 % Add PTASK properties
 Props = {Props{:} 'Period'}; 

@@ -1,3 +1,3 @@
 function g = creategraph(varargin)
-    g = graph([0 1 0 1; 0 0 1 1; 1 0 0 1; 0 0 0 1]);
+    g = torsche.graph([0 1 0 1; 0 0 1 1; 1 0 0 1; 0 0 0 1]);
     

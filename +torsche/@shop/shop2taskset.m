@@ -67,7 +67,7 @@ function ts = shop2taskset(sh, varargin)
             retJobsOnProc =1;
         end
     end
-	if isa(sh,'shop')
+	if isa(sh,'torsche.shop')
         ts = [];
         start = [];
         proctime = [];
@@ -94,7 +94,7 @@ function ts = shop2taskset(sh, varargin)
                         else
                         	processor = i*ones(1,max(size(sh.Jobs{1})));
                         end
-                        job = taskset(job, precMatrix);
+                        job = torsche.taskset(job, precMatrix);
                         ts = job;
                     else
     			        start = [start st];
@@ -104,7 +104,7 @@ function ts = shop2taskset(sh, varargin)
                         else
             				processor = [processor 	i*ones(1,max(size(sh.Jobs{i})))];
                         end
-                        job = taskset(job, precMatrix);
+                        job = torsche.taskset(job, precMatrix);
                         ts = [ts job];
                     end
                 end
@@ -166,9 +166,9 @@ function ts = shop2taskset(sh, varargin)
 	else
 		error('TORSCHE:shop:invalidParam','Input must be shop object, See help!');
 	end;
-        if isa(ts, 'job')
-                ts1 = taskset(ts);
+        if isa(ts, 'torsche.job')
+                ts1 = torsche.taskset(ts.parent);
                 [s,pt, proc] = get_schedule(ts);
-                ts1.add_schedule([ 'Schedule for ' sh.Type],s,pt,proc);
+                add_schedule(ts1, [ 'Schedule for ' sh.Type],s,pt,proc);
                 ts = ts1;
         end	

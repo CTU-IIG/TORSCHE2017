@@ -86,7 +86,7 @@ while(tmax < tstop)
             ready(i)=c(i); % put the tasks to the ready set
             pt = ts.tasks(i);
             pts = struct(pt);
-            temptask = pts.task;
+            temptask = pts.parent;
             temptask.Processor = i; % Hack for plotting the schedule
             temptask.ReleaseTime = tmax;
             readyTasks{i} = temptask;

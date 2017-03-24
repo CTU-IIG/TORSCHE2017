@@ -65,7 +65,7 @@ function S = jackson(S, p)
 
 
 
-if isa(S,'shop') && isa(p,'problem')
+if isa(S,'torsche.shop') && isa(p,'torsche.problem')
 	%check param
 	if ~is(p,'alpha','J') || ~is(p,'betha','nj<=2')
 		error('TORSCHE:shop:invalidProblemType','Invalid parameters, Problem must be J2|nj<=2|Cmax - see help!');

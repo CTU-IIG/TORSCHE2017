@@ -64,7 +64,7 @@ function [S] = johnson(S,p)
 % Suite 330, Boston, MA 02111-1307 USA
  
 
-if isa(S,'shop') && isa(p,'problem')
+if isa(S,'torsche.shop') && isa(p,'torsche.problem')
 	%check param
 	if ~is(p,'alpha','F')
 		error('TORSCHE:shop:invalidProblemType','Invalid parameters, Problem must be F2||Cmax - see help!')

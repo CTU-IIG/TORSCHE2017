@@ -152,7 +152,7 @@ for i = 1:size(oddNodes,2)
         A(i,numberOfEdges(k)) = 1;
     end
 end
-xmin = ilinprog(schoptionsset(),1,f,A,b,E,lb,Ub,I); %#ok<NASGU>
+xmin = torsche.ilinprog(schoptionsset(),1,f,A,b,E,lb,Ub,I); %#ok<NASGU>
 
 % adding the mwpm edges to spanning tree
 newEdges = find(xmin==1);
@@ -242,7 +242,7 @@ if ~isempty(EF)
         edl(size(edl,1)+1,:) = edlROG(add(numAdd(i)),:);
     end
     edl = mat2cell(edl,[ones(1,size(edl,1))],[ones(1,size(edl,2))]);
-    g = graph('edl',edl);
+    g = torsche.graph('edl',edl);
     TSP = walkeuler;
     delTSPs = sort(delTSP);
     j = 0;

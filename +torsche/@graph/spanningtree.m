@@ -90,7 +90,7 @@ function st = spanningtree(g,varargin)
         Mst(index) = minWeight;         % edge is added to spanningtree
     end;
 
-    st = graph(Mst);
+    st = torsche.graph(Mst);
     
     % TODO directed2undirected
     

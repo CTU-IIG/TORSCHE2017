@@ -72,7 +72,7 @@ function [U,varargout]=floyd(varargin)
 
 
 na = nargin;
-if na==1 && isa(varargin{1},'graph')
+if na==1 && isa(varargin{1},'torsche.graph')
    graph = varargin{1};
    v_adj = adj(graph);
    M = inf*ones(size(v_adj));

@@ -59,7 +59,7 @@ function taskout = node2task(n,varargin)
 
  
 na = nargin;
-taskout = task(1);
+taskout = torsche.task(1);
 taskout.Name = n.Name;
 if na>1
     parameters = varargin{1};
@@ -82,7 +82,7 @@ if na>1
 end
 
 objs = struct(taskout);
-taskout = task(taskout,objs.parent,n.schedobj);
+taskout = torsche.task(taskout,objs.parent,n.parent);
 
 
 set_graphic_param(taskout,'color',get(n,'color'));

@@ -117,10 +117,10 @@ ub=ones(n^2,1);                         % upper bound on variables
 vartype = '';
 vartype(1:n^2,1) = 'B';                 % variable type
              
-schoptions=schoptionsset('miqpSolver','miqp','solverVerbosity',0);   %ILP solver options (use default values)
+schoptions=torsche.schoptionsset('miqpSolver','miqp','solverVerbosity',0);   %ILP solver options (use default values)
 
 %disp('The solution is:');
-[xmin,fmin,status,extra] = iquadprog(schoptions,1,H,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.iquadprog(schoptions,1,H,c,A,b,ctype,lb,ub,vartype);
 
 map = reshape(xmin,n,n);
 

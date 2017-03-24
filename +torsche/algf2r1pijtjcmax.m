@@ -70,7 +70,7 @@ function [scheduledShop] = algf2r1pijtjcmax(inputShop, inputProblem)
 
 
 %checking parameters
-if ~isa(inputShop, 'shop') || ~isa(inputProblem, 'problem')
+if ~isa(inputShop, 'torsche.shop') || ~isa(inputProblem, 'torsche.problem')
     error('TORSCHE:shop:invalidParam', 'Invalid parameters - see help!')
 end
 if ~is(inputProblem, 'alpha', 'F2')
@@ -81,7 +81,7 @@ for i=1:max(size(inputShop.jobs))
         error('TORSCHE:shop:invalidParam', 'Each job must have 2 tasks, see help! ')
     end
 end
-if ~isa(inputShop.TransportRobots, 'transportrobots')
+if ~isa(inputShop.TransportRobots, 'torsche.transportrobots')
     error('TORSCHE:shop:invalidParam', 'Invalid parameters, inputShop.robots has to be a tranportrobots object - see help!')
 end
 
@@ -210,7 +210,7 @@ for i = 1:N
 end
 
 % writing output properties
-scheduledShop = shop(scheduledJobs);
+scheduledShop = torsche.shop(scheduledJobs);
 scheduledShop.schedule = 1;
 robots.schedule = 1;
 set(robots, 'schedule', robotSchedule);

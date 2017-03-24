@@ -54,7 +54,7 @@ function LHgraph = cdfg2LHgraph(cdfg,UnitProcTime,UnitLattency)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if(~isa(cdfg,'graph'))
+if(~isa(cdfg,'torsche.graph'))
     error('Input parametr must be a graph');
 end;
 

@@ -53,7 +53,7 @@ disp('------------------------------------------------------');
 
 % Example 5.1.2 from Pinedo, Scheduling - Theory, Algorithms
 %  and Systems)
-T=taskset([7 7 6 6 5 5 4 4 4]);
+T=torsche.taskset([7 7 6 6 5 5 4 4 4]);
 T.Name={'T_1' 'T_2' 'T_3' 'T_4' 'T_5' 'T_6' 'T_7' 'T_8' 'T_9'};
 
 disp(' ');
@@ -62,10 +62,10 @@ get(T)
 
 
 %define the problem
-p = problem('P||Cmax');
+p = torsche.problem('P||Cmax');
 
 %call a scheduling algorithm
-T = algpcmaxdp(T,p,4);
+T = torsche.algpcmaxdp(T,p,4);
 
 plot(T);
 title('Schedule obtained by ''algpcmaxdp'' algorithm.');

@@ -47,7 +47,7 @@ function graphout = loadobj(graphin)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if isa(graphin, 'graph')
+if isa(graphin, 'torsche.graph')
     graphout = graphin;
 else %graphin is old version
     num = length(graphin);

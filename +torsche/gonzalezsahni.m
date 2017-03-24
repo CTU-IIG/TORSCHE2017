@@ -63,7 +63,7 @@ function [Sh]=gonzalezsahni(Sh,p)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if ~isa(Sh,'shop') || ~isa(p,'problem')
+if ~isa(Sh,'torsche.shop') || ~isa(p,'torsche.problem')
 	error('TORSCHE:shop:invalidParam','Invalid parameters - see help!')
 end;
 if ~is(p,'alpha','O')

@@ -95,7 +95,7 @@ if destDir(end) == '\'
     destDir(end) = [];
 end
 
-valid = isa(TS, 'shop') || isa(TS, 'taskset');
+valid = isa(TS, 'torsche.shop') || isa(TS, 'torsche.taskset');
 if ~valid    
     err = 'TORSCHE:VISIS:invalidParameter';
     error('%s\n%s', err, 'Second argument must be of type ''shop'' or ''taskset''.')

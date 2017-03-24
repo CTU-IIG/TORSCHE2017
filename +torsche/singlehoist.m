@@ -73,7 +73,7 @@ if(~exist('plot','var'))
 end
 
 if(~exist('schoptions','var'))
-    schoptions = schoptionsset();
+    schoptions = torsche.schoptionsset();
 end
 
 d = T.ProcTime;
@@ -319,7 +319,7 @@ c(1)=1;                     %pozice 1 v c(x) predstavuje T, ktere chceme minimal
     %promennych (lb, ub)
 
 %spusteni vlastniho algoritmu
-[xmin,fmin,status,extra] = ilinprog(schoptions,1,c,M,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.ilinprog(schoptions,1,c,M,b,ctype,lb,ub,vartype);
 
 if(status==1)
     xmin=(xmin)';

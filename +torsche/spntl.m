@@ -134,7 +134,7 @@ function [startTime,CPUTime]=spntl_ilp(p,m,W,CMAXINF,schoptions)
 
 n=size(W,1);
 WPos=W.*(W>0);
-WLong=floyd(graph('adj',WPos));
+WLong=floyd(torsche.graph('adj',WPos));
 
 
 %%%%%% Constraints given by graph %%%%%
@@ -203,7 +203,7 @@ if(schoptions.verbose>=1)
     disp(sprintf('Current ILP model contains %d variables and %d constraints.',size(A,2),size(A,1)));
 end;
 
-[xmin,fmin,status,extra] = ilinprog (schoptions,1,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.ilinprog (schoptions,1,c,A,b,ctype,lb,ub,vartype);
 if(~isempty(xmin))
     startTime=xmin(1:n)';
     startTime=round(startTime*1000)/1000;

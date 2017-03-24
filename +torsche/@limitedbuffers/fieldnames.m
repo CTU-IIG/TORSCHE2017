@@ -57,7 +57,7 @@ function [Props,AsgnVals,DefVal] = fieldnames(this)
  
 
 % Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(getfield(struct(this), this.parent));
+[Props,AsgnVals,DefVal] = fieldnames(this.parent);
 
 % Add NODE properties
 Props = {'Model' 'Capacity' 'Utilization' Props{:}}; 

@@ -64,7 +64,7 @@ function value = getdata(g,property)
 
 
 value = 0;
-if ~isa(g,'graph')
+if ~isa(g,'torsche.graph')
     error('1st parameter must be graph.');
 end
 if ~isa(property,'char')

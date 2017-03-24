@@ -1,15 +1,10 @@
-function [Props,AsgnVals,DefVal] = fieldnames(taskset, varargin)
-%FIELDNAMES  All public properties and their assignable values and default
-%           value
+function setoftasks = horzcat(varargin)
+%HORZCAT      Concatenation of taskset.
+%                   Taskset = [T1 T2 T3 ... ]
 %
-%   [PROPS,ASGNVALS,DEFVAL] = FIELDNAMES(TASKSET[,virtualprop])
-%     PROPS       - list of public properties of the object TASKSET (a cell vector)
-%     ASGNVALS    - assignable values for these properties (a cell vector)
-%     DEFVAL      - default values
-%     virtualprop - if is set to 1 than returned values includes a virtual
-%                   property
+%  Notice: Schedule is not cleared from tasks
 %
-%   See also  SCHEDOBJ/GET, SCHEDOBJ/SET.
+%  See also TASKSET.
 
 
 % Author: Michal Kutil <kutilm@fel.cvut.cz>
@@ -55,46 +50,32 @@ function [Props,AsgnVals,DefVal] = fieldnames(taskset, varargin)
 % along with TORSCHE Scheduling Toolbox for Matlab; if not, write
 % to the Free Software Foundation, Inc., 59 Temple Place,
 % Suite 330, Boston, MA 02111-1307 USA
- 
-
-% Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(taskset.parent);
-
-% TASKSET properties
-Props = {'Prec' 'schedule' 'ScheduleDesc' 'tasks' 'TSUserParam'  Props{:}}; 
-% There are also dynamic properties.  See GET_VPROP.
-
-% Get virtual properties
-%if ~isempty(varargin) & varargin{1} == 1
-    [VProps,VAsgnVals,VDefVal] = fieldnames(torsche.task(1));
-    i = 1;
-    while (i <= length(VProps))
-        if ~isempty(find(strcmp(VProps(i),Props), 1))
-            VProps = [VProps(1:i-1) VProps(i+1:length(VProps))];
-            VAsgnVals = [VAsgnVals(1:i-1) VAsgnVals(i+1:length(VAsgnVals))];
-            VDefVal = [VDefVal(1:i-1) VDefVal(i+1:length(VDefVal))];
-        end
-        i = i + 1;
-    end
-%else
-%    VProps = {}; VAsgnVals = {}; VDefVal ={};
-%end
-
-Props = {Props{:} VProps{:}};
 
 
-% Also return assignable values if needed
-if nargout>1,
-    AsgnVals = {'precedens constrains' ...
-                'schedule description'...
-                'tasks cell'...
-                'taskset user parameters'...
-                AsgnVals{:} VAsgnVals{:}};
-
-    if nargout>2,
-        DefVal = {[] '' [] DefVal{:} VDefVal{:}};
-    end
+ni = nargin;
+if isa(varargin{1},'torsche.task')
+    setoftasks.parent = [varargin{1}];
+elseif  isa(varargin{1},'torsche.taskset')
+    setoftasks.parent = varargin{1};
+elseif  isa(varargin{1},'torsche.job')
+    setoftasks = varargin{1};
 end
-
-
-%end .. @taskset/fieldnames
+for i = 2:ni
+    if isa(varargin{i},'torsche.task')
+        addto = [varargin{i}];
+    elseif  isa(varargin{i},'torsche.taskset')
+        addto = varargin{i};
+    elseif  isa(varargin{1},'torsche.job')
+    	addto = varargin{i}.parent;
+    end
+    setoftasks.parent.Prec = blkdiag(get(setoftasks.parent,'Prec'), get(addto,'Prec')); % Must be use function GET - get_cerrection() function will be call!
+    setoftasks.parent.tasks =[[setoftasks.parent.tasks(:) addto.tasks(:)]];
+    if ~isempty(setoftasks.parent.schedule.desc) & ~isempty(addto.schedule.desc) 
+        conjunction = ' | ';
+    else
+        conjunction = '';
+    end
+    setoftasks.parent.schedule.desc = [setoftasks.parent.schedule.desc conjunction addto.schedule.desc];
+    setoftasks.parent.schedule.is = setoftasks.parent.schedule.is | addto.schedule.is;
+end
+%end .. @taskset/horzcat

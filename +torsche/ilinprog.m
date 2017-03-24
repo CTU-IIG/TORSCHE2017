@@ -126,7 +126,7 @@ if isa(varargin{1},'struct')
         vartype(1:length(c),1) = 'C';
     end
 else
-    schoptions = schoptionsset;
+    schoptions = torsche.schoptionsset;
     sense = varargin{1};
     c = varargin{2};
     A = varargin{3};

@@ -59,15 +59,15 @@ function nodeout = task2node(t,varargin)
 
  
 na = nargin;
-nodeout = node;
+nodeout = torsche.node;
 nodeout.Name = t.Name;
 if na>1
     nodeout.UserParam = task2userparam(t,varargin{1});
 end
 objs = struct(nodeout);
-nodeout = node(nodeout,objs.parent,t.schedobj);
+nodeout = torsche.node(nodeout,objs.parent,t.schedobj);
 color = get_graphic_param(t,'color');
-if iscolor(color),
+if torsche.iscolor(color),
     set(nodeout,'color',color);
 end
 %end .. @task/task2node

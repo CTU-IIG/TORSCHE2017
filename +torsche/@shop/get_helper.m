@@ -75,7 +75,9 @@ switch lower(Property)
 				out = zeros(size(sh.Jobs));
 				for i =1:size(out,2)
 					out(i)=sh.Jobs{i}.Weight;
-				end
+                end
+    case 'robots'
+        out = sh.TransportRobots;
 			case {'proctimeasmatrix','proctime'}
 				out = getproctimeasmatrix(sh);	
 			case {'processorsasmatrix','processor'}

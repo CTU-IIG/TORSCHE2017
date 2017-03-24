@@ -76,7 +76,7 @@ end
 [machine,next]=set_parameter(varargin,next,[],0);
 
 % generate task with random parameters
-rtask = task(name,p,r,dl,dd,w,machine);
+rtask = torsche.task(name,p,r,dl,dd,w,machine);
 
 % internal function set_param
 function [par, next] = set_parameter(var, next, defvalue, multi)

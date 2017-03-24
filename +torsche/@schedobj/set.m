@@ -75,7 +75,7 @@ function Out=set(object, varargin)
 ni = nargin;
 no = nargout;
 
-if ~isa(object,'schedobj'),
+if ~isa(object,'torsche.schedobj'),
     % Call built-in SET. Handles calls like set(gcf,'user',ss)
     builtin('set',object,varargin{:});
     return
@@ -106,7 +106,7 @@ elseif ni==2,
     % Return admissible property value(s)
     try
         imatch = find(strcmpi(AllProps,varargin{1}));
-        if isempty(imatch) && isa(object,'graph')        
+        if isempty(imatch) && isa(object,'torsche.graph')        
 
         elseif isempty(imatch)
             error('Unknown property.');
@@ -148,10 +148,10 @@ else
                 for_transfer_node = 0;
                 for_transfer_edge = 0;
                 for ii=1:length(Value_i)
-                    if isa(Value_i{ii}, 'node')
+                    if isa(Value_i{ii}, 'torsche.node')
                         for_transfer_node = for_transfer_node + 1;
                     end
-                    if isa(Value_i{ii}, 'edge')
+                    if isa(Value_i{ii}, 'torsche.edge')
                         for_transfer_edge = for_transfer_edge + 1;
                     end
                 end
@@ -162,7 +162,6 @@ else
             end
             % -^
             try
-               
                 object = eval(['' class(object) '(object, varargin{i}, varargin{i+1});']);
             catch
                 try
@@ -172,7 +171,7 @@ else
                 end
             end
         else
-            if isa(object,'graph') || isa(schedobj,'node')
+            if isa(object,'torsche.graph') || isa(object,'torsche.node')
                 try
                     object = setdata(object, varargin{i}, varargin{i + 1});
                 catch

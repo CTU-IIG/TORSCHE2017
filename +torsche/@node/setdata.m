@@ -53,7 +53,7 @@ function nOut = setdata(nIn,property,value)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if ~isa(nIn,'node')
+if ~isa(nIn,'torsche.node')
     error('1st parameter must be node.');
 end
 if ~isa(property,'char')
@@ -64,7 +64,7 @@ try
     switch lower(property)
         
         case {'color', 'clr'}
-            if iscolor(value),
+            if torsche.iscolor(value),
                 nOut = setnodecolor(nIn, value);
             else
                 error('RGB vector is required as value.');

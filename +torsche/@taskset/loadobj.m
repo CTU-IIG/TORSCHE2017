@@ -49,7 +49,7 @@ function tasksetout = loadobj(tasksetin)
  
 last_version = 0.3;
 
-if isa(tasksetin,'taskset')
+if isa(tasksetin,'torsche.taskset')
     tasksetout = tasksetin;
     %tasksetin is old version (uncrash changes)
     switch tasksetin.Version

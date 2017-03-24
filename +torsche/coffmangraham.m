@@ -72,7 +72,7 @@ function TS=coffmangraham(T, prob, varargin)
 
 verbose=0;
 %do checks
-if ~isa(T,'taskset')
+if ~isa(T,'torsche.taskset')
     error('Taskset class must be taskset');
 end
 if nargin>2
@@ -82,7 +82,7 @@ if nargin>2
         verbose=varargin{1};
     end
 end
-if isa(prob,'problem')
+if isa(prob,'torsche.problem')
     if ~(is(prob,'alpha','P2') && is(prob,'betha','prec,pj=1') && is(prob,'gamma','Cmax'))
         error('This problem can''t be solved by coffmangraham algorithm.');
     end
@@ -179,7 +179,7 @@ while j<n
 end;
 T.UserParam = labels;
 %apply Hu algorithm
-TS = hu(T,prob, 2, verbose);
+TS =torsche. hu(T,prob, 2, verbose);
 %add schedule results
 add_schedule(TS,'time',cputime - time);
 add_schedule(TS,'description','Coffman and Graham algorithm for P2|prec,pj=1|Cmax');

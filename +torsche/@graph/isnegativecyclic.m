@@ -63,7 +63,7 @@ function isNegCyclic = isnegativecyclic(g,varargin)
 
 
     % fitting of input
-    if nargin == 1 && isa(g,'graph')
+    if nargin == 1 && isa(g,'torsche.graph')
         matrix = edge2param(g,1,Inf);           % getting UserParam from graph, position 1
     elseif nargin == 2 && isa(varargin{1},'double')
         matrix = varargin{1};

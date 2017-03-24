@@ -51,6 +51,6 @@ function display(T)
 
  
 
-T.task
+T.parent
 disp([' Period:       ',int2str(T.Period)]);
 

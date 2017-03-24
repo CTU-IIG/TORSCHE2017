@@ -69,7 +69,7 @@ function [T,m] = cssimin(filename,varargin)
 [H,g,u,p,l,Variables,Functions,Processors,CodeGenerationTaskParam,SimulationFrequency]=cssimparser(filename);
 
 %Create corresponding graph
-gr=graph('adj',double(g~=Inf));
+gr=torsche.graph('adj',double(g~=Inf));
 gr=matrixparam2edges(gr,g);
 
 gr.UserParam.graphedit.nodeparams={'Processor'};
@@ -78,7 +78,7 @@ for(i=1:size(H,1))
     gr.N(i).UserParam={u(i)};
 end;
 
-LHgraph = cdfg2LHgraph(gr,p',l');
+LHgraph = torsche.cdfg2LHgraph(gr,p',l');
 
 %Generate taskset from graph 'LHgraph'.
 gen_taskset=taskset(LHgraph,'n2t',@node2task,'ProcTime','Processor','e2p',@edges2param);

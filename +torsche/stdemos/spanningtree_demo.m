@@ -61,7 +61,7 @@ A = [inf  1   2  inf  7;...
      inf  9  inf  1   1;...
       8   5  inf inf inf;...
       7  inf  4   5  inf]
-g1 = graph(A);
+g1 = torsche.graph(A);
 g1.Name = 'Input Graph';
 
 %call the algorithm
@@ -69,6 +69,6 @@ g2 = spanningtree(g1);
 g2.Name = 'Spanning Tree';
 
 %display results
-graphedit(g1,g2);
+torsche.graphedit(g1,g2);
 
 

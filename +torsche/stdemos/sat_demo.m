@@ -46,18 +46,18 @@ disp(' SAT scheduler demo ');
 disp(' ----------------------');
 
 %create set of tasks
-t1=task('task1',5,1,22);
-t2=task('task2',3,5,38);
-t3=task('task3',6,1,22);
-t4=task('task4',4,3,27);
-t5=task('task5',1,5,30);
-t6=task('task6',7,5,21);
-t7=task('task7',9,6,32);
-t8=task('task8',6,8,30);
-t9=task('task9',2,1,45);
-t10=task('task10',6,2,40);
-t11=task('task11',10,15,30);
-T=taskset([t1 t2 t3 t4 t5 t6 t7 t8 t9 t10]);
+t1=torsche.task('task1',5,1,22);
+t2=torsche.task('task2',3,5,38);
+t3=torsche.task('task3',6,1,22);
+t4=torsche.task('task4',4,3,27);
+t5=torsche.task('task5',1,5,30);
+t6=torsche.task('task6',7,5,21);
+t7=torsche.task('task7',9,6,32);
+t8=torsche.task('task8',6,8,30);
+t9=torsche.task('task9',2,1,45);
+t10=torsche.task('task10',6,2,40);
+t11=torsche.task('task11',10,15,30);
+T=torsche.taskset([t1 t2 t3 t4 t5 t6 t7 t8 t9 t10]);
 
 disp(' ');
 disp('An instance of the scheduling problem:');
@@ -65,12 +65,12 @@ get(T)
 
 
 %define the problem
-p=problem('P|prec|Cmax');
+p=torsche.problem('P|prec|Cmax');
 subplot(2,1,1)
 plot(T);
 title('Scheduling problem');
 
-TS = satsch(T,p,2);
+TS = torsche.satsch(T,p,2);
 subplot(2,1,2)
 plot(TS);
 title('Solved schedule')

@@ -67,7 +67,7 @@ function [G_FLOW, fmin] = mincostflow(varargin)
 
 
 na = nargin;
-if (na == 1 && isa(varargin{1},'graph'))
+if (na == 1 && isa(varargin{1},'torsche.graph'))
    g = varargin{1};
    n = size(g.N,2);                       %Number of graph nodes
    adj_g = adj(g);
@@ -133,7 +133,7 @@ else
    
    A = zeros(n, m);
    
-   g=graph(adjMatrix,0);
+   g=torsche.graph(adjMatrix,0);
    
    price = [];
    cb = [];
@@ -166,8 +166,8 @@ sense = 1;    %type of optimalization: 1=minimalization, -1=maximalization
 ctype=''; ctype(1:size(b,1),1)='E';
 vartype=''; vartype(1:size(price,1),1) = 'C';
 
-schoptions=schoptionsset('ilpSolver','glpk','solverVerbosity',0);
-[xmin,fmin,status,extra] = ilinprog (schoptions,sense,price,A,b,ctype,cb,db,vartype);
+schoptions=torsche.schoptionsset('ilpSolver','glpk','solverVerbosity',0);
+[xmin,fmin,status,extra] = torsche.ilinprog (schoptions,sense,price,A,b,ctype,cb,db,vartype);
 
 if(status==1)
     %disp('Successful.');

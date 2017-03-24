@@ -56,7 +56,7 @@ function [Props,AsgnVals,DefVal] = fieldnames(node)
  
 
 % Get parent object properties
-[Props,AsgnVals,DefVal] = fieldnames(getfield(struct(node), node.parent));
+[Props,AsgnVals,DefVal] = fieldnames(node.parent);
 
 % Add NODE properties
 Props = {'Name' 'UserParam' 'Color' 'Position' 'LineStyle' 'LineWidth' 'Arrow' 'TextParam' 'Undirected' Props{:}}; 

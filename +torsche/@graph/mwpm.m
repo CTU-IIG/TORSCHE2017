@@ -100,7 +100,7 @@ LB = zeros(edgeNumber,1);
 UB = ones(edgeNumber,1);
 CTYPE(1:nodeNumber,1) = 'E';
 VARTYPE(1:edgeNumber,1) = 'I';
-xmin = ilinprog(schoptionsset(),1,C,A,B,CTYPE,LB,UB,VARTYPE);
+xmin = torsche.ilinprog(torsche.schoptionsset(),1,C,A,B,CTYPE,LB,UB,VARTYPE);
 del = find(xmin == 0);
 if isempty(del)
     error('Torsche:graph:notexistmwpm',...

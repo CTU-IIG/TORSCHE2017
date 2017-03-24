@@ -53,7 +53,7 @@ out = 1;
 try
     if ~isempty(dataTypes) && ~isempty(list)
         % test for cell of objects NODE or EDGE
-        if isa(list(1),'node') || isa(list(1),'edge')
+        if isa(list(1),'torsche.node') || isa(list(1),'torsche.edge')
             emptyValues = getemptyvalues(dataTypes);
             for i = 1:length(list)
                 if isempty(list(i).UserParam)

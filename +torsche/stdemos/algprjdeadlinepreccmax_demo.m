@@ -52,26 +52,26 @@ disp('Demo of scheduling algorithm for problem ''P|rj,~dj,prec|Cmax''.');
 disp('----------------------------------------------------------------');
 
 %create set of tasks
-t1 = task('t1',4,0,4);
-t2 = task('t2',2,3,12);
-t3 = task('t3',1,3,11);
-t4 = task('t4',6,3,10);
-t5 = task('t5',4,3,12);
+t1 = torsche.task('t1',4,0,4);
+t2 = torsche.task('t2',2,3,12);
+t3 = torsche.task('t3',1,3,11);
+t4 = torsche.task('t4',6,3,10);
+t5 = torsche.task('t5',4,3,12);
 prec = [0 0 0 0 0;...
         0 0 0 0 0;...
         0 0 0 1 0;...
         0 0 0 0 0;...
         0 1 0 0 0];
-T = taskset([t1 t2 t3 t4 t5],prec);
+T = torsche.taskset([t1 t2 t3 t4 t5],prec);
 
 disp(' ');
 disp('An instance of the scheduling problem:');
 get(T)
 
 %define the problem
-pro= problem('P|rj,prec,~dj|Cmax');
+pro= torsche.problem('P|rj,prec,~dj|Cmax');
 
-T = algprjdeadlinepreccmax(T,pro,3);
+T = torsche.algprjdeadlinepreccmax(T,pro,3);
 
 plot(T);
 title('Schedule obtained by ''algprjdeadlinepreccmax'' algorithm.');

@@ -61,7 +61,7 @@ function varargout = cpshopscheduler_demo
 
 PJS = [1 2 3 ; 3 2 1; 2 3 1];
 PTJS = [6 3 1; 2 4 6 ;4 4 4];
-sh = shop(PTJS,PJS);
+sh = torsche.shop(PTJS,PJS);
 sh.type = 'J';
 ts = shop2taskset(sh);
 yax = {};
@@ -71,8 +71,8 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-pr = problem('J||Cmax');
-sh = cpshopscheduler(sh,pr);
+pr = torsche.problem('J||Cmax');
+sh = torsche.cpshopscheduler(sh,pr);
 if nargout == 3
 	varargout{1}=PTJS;
 	varargout{2}=PJS;

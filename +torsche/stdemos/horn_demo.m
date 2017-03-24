@@ -54,16 +54,16 @@ disp('Demo of scheduling algorithm for problem ''1|pmtn,rj|Lmax''.');
 disp('------------------------------------------------------');
 
 %define scheduling problem
-p=problem('1|pmtn,rj|Lmax');
+p=torsche.problem('1|pmtn,rj|Lmax');
 
 %create set of tasks
-T = randtaskset(6, [1 10], [0 15], inf, [25 35]);
+T = torsche.randtaskset(6, [1 10], [0 15], inf, [25 35]);
 
 disp(' ');
 disp('An instance of the scheduling problem:');
 get(T)
 
-TS = horn(T,p);
+TS = torsche.horn(T,p);
 maxAxis = max(schparam(TS,'cmax'),max(get(TS,'DueDate')));
 
 clf;

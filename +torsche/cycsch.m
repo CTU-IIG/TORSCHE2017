@@ -93,7 +93,7 @@ end;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% (integer) lover bound - "w_lower" %%%
-LH_graph=graph('adj',(L~=0)*1);
+LH_graph=torsche.graph('adj',(L~=0)*1);
 LHgraph=matrixparam2edges(LH_graph,L,1,0);
 LHgraph=matrixparam2edges(LHgraph,H,2);
 
@@ -344,7 +344,7 @@ for(proc=1:length(m))
                     
                     regularSolver=schoptions.ilpSolver;
                     schoptions.ilpSolver=schoptions.varElimILPSolver;
-                    [xmin,fmin,status,extra] = ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
+                    [xmin,fmin,status,extra] = torsche.ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
                     schoptions.ilpSolver=regularSolver;
                 else
                     status=1;
@@ -480,7 +480,7 @@ if(schoptions.verbose==2)
     end;
 end;
 
-[xmin,fmin,status,extra] = ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
 if(status==1)
     startTime=xmin(1:n)'+w*xmin((n+1):2*n)';
     
@@ -873,7 +873,7 @@ if(schoptions.verbose==2)
     disp(sprintf('Current ILP model contains %d variables and %d constraints.',size(A,2),size(A,1)));
 end;
 
-[xmin,fmin,status,extra] = ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
+[xmin,fmin,status,extra] = torsche.ilinprog(schoptions,1,c,A,b,ctype,lb,ub,vartype);
 if(status==1)
     
     if(mode<3)

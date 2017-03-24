@@ -1,17 +1,13 @@
-function object = set_helper(object, property, value)
-%SET_HELPER Internal function for property setting.
+function [Value, found] = get_helper(this, Property)
+%GET_HELPER Internal function for virtual property retrieval.
 %
-%    SET_HELPER(OBJECT, PROPERTY, VALUE) sets PROPERTY of an OBJECT to
-%    the VALUE.
+%    [VALUE, found] = GET_HELPER(OBJECT, PROPERTY) returns PROPERTY VALUE.
+%       found is true if the virtual PROPERTY exist othewise is found false. 
 %    
-%    This function has to be copied to every descendant of SCHEDOBJ
-%    class. Matlab's OOP behavior is very limited and this function
-%    allows us to overcome some of these limations.
-%
-%    See also: SET
+%    See also: GET
 
 
-% Author: Michal Sojka <sojkam1@fel.cvut.cz>
+% Author: Jiri Cigler <ciglerj1@fel.cvut.cz>
 % Originator: Michal Kutil <kutilm@fel.cvut.cz>
 % Originator: Premysl Sucha <suchap@fel.cvut.cz>
 % Project Responsible: Zdenek Hanzalek
@@ -55,67 +51,67 @@ function object = set_helper(object, property, value)
 % to the Free Software Foundation, Inc., 59 Temple Place,
 % Suite 330, Boston, MA 02111-1307 USA
 
- 
-if (isfield(struct(object), property))
-    eval(['object.' property '=value;']);    
-else
-    try
- 
 
-Success = true;
-switch lower(property)
-  case 'schedule_desc'  % lower case
-    object.schedule.desc = value;
+found = true;
+switch lower(Property)
+  case 'scheduledesc'  % lower case
+    Value = this.schedule.desc;
+    return;
+  case 'schedule'
+    Value = this.schedule;
+    return;  
+  case 'prec'
+    Value = this.Prec;
+    return;
+  case 'count'  % lower case
+    Value = size(this);
     return;
   case 'tasks'  % lower case
-    if (iscell(value))
-        for i=1:length(value)
-            if (~isa(value{i},'torsche.task')) error ('Invalid data type!');end;
-        end
-        object.tasks = value; %valid that it is class tasks
-    elseif isa(value,'torsche.task')
-        object.tasks = {value};
-    else
-        error ('Invalid data type!');
-    end
-    return;
+    Value = this.tasks;
+    return;   
 end
     
-% Try to set properties of all tasks
-Success = false;
-if any(size(object.tasks) ~= size(value))
-    error('value has different size than Tasks');
-end
-for i=1:size(object.tasks, 1)
-    for j=1:size(object.tasks, 2)
+% Try to collect properties of all tasks
+found = false;
+Value = [];
+outputDimension = 0;
+for i=1:size(this.tasks, 1)
+    for j=1:size(this.tasks, 2)
         try
-            if iscell(value)
-                object.tasks{i,j} = set_helper(object.tasks{i,j}, property, value{i, j});
-                eval(['object.tasks{i,j} =' class(object.tasks{i,j}) '(object.tasks{i,j}, property, value{i, j});']);
-            else
-                object.tasks{i,j} = set_helper(object.tasks{i,j}, property, value(i, j));
-                %eval(['object.tasks{i,j} =' class(object.tasks{i,j}) '(object.tasks{i,j}, property, value{i, j});']);
-            end
-            Success = true;
+            V = get(this.tasks{i,j}, Property);
+            found = true;
         catch
-            % Not every task must have this property
+            V = NaN;
+        end
+        if ischar(V)
+            Value{i,j} = V;
+        elseif isempty(V)
+            Value(i,j) = NaN;
+        else
+            if (size(this.tasks, 1) == 1) % Klasikl this with 1xn task
+                if (size(V,1) == 1) & (size(V,2) > 1) & (outputDimension == size(V,2) | outputDimension == 0) % Multi parameter
+                    Value(:,j) = V';
+                    outputDimension = size(V,2);
+                elseif (length(V)==1) & (outputDimension == size(V,2) | outputDimension == 0)
+                    Value(i,j) = V;
+                    outputDimension = 1;
+                else
+                    error(['Dimension mismatch in ' Property ' property.']);
+                end
+            else %Prepare for Shops
+                error('Remove this error message from get_vprop.m file, this is for Shops');
+                Value(i,j) = V;
+            end
         end
     end
 end
-
-
-    catch
-	    eval(['object.' object.parent ' = ' object.parent '(object.' object.parent ', property, value);']);
-    end
-end    
-
 
 
 % *************
 % funtion for get properties from task
-function prop = get_prop(object,property)
-for i=1:1:size(object.tasks,2)
-    tmp = get(object.tasks(i),property);
+function prop = get_prop(this,property)
+for i=1:1:size(this.tasks,2)
+    tmp = get(this.tasks(i),property);
     if sum(strcmpi(property,{'name','machine'}))
         prop{i} = tmp;
     else
@@ -133,6 +129,4 @@ for i=1:length(prop),
         val = rmfield(val,prop{i});
     end
 end
-
-
 

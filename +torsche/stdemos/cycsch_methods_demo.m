@@ -68,23 +68,23 @@ fprintf('Input-output lattency of the unit is %d [clk].\n\n',UnitLattency);
 experTime=zeros(exper,2);
 
 for(expCounter=1:exper)
-	cdfg=randdfg(n,1,3,round(n*1.8),round(n/1.5),2);
+	cdfg=torsche.randdfg(n,1,3,round(n*1.8),round(n/1.5),2);
 	
-    LHgraph = cdfg2LHgraph(cdfg,UnitProcTime,UnitLattency);	
+    LHgraph = torsche.cdfg2LHgraph(cdfg,UnitProcTime,UnitLattency);	
 	
 	%gen_taskset=taskset(LHgraph);
-    gen_taskset=taskset(LHgraph,'n2t',@node2task,'ProcTime','Processor','e2p',@edges2param);
+    gen_taskset=torsche.taskset(LHgraph,'n2t',@node2task,'ProcTime','Processor','e2p',@edges2param);
 	%gen_taskset.ProcTime=UnitProcTime(dedicProc);
-	prob=problem('CSCH');
+	prob=torsche.problem('CSCH');
 	
     fprintf('Experiment %d of %d\n',expCounter,exper);
 	%fprintf('*** Cyclic Scheduling algorithm (integer method) ***\n');
-	schoptions=schoptionsset('cycSchMethod','integer','ilpSolver','glpk','verbose',0,'qmax',1);
-	t_integer=cycsch(gen_taskset, prob, m, schoptions);
+	schoptions=torsche.schoptionsset('cycSchMethod','integer','ilpSolver','glpk','verbose',0,'qmax',1);
+	t_integer=torsche.cycsch(gen_taskset, prob, m, schoptions);
 	
 	%fprintf('\n*** Cyclic Scheduling algorithm (binary method) ***\n');
-	schoptions=schoptionsset('cycSchMethod','binary','ilpSolver','glpk','verbose',0,'qmax',1);
-	t_binary=cycsch(gen_taskset, prob, m, schoptions);
+	schoptions=torsche.schoptionsset('cycSchMethod','binary','ilpSolver','glpk','verbose',0,'qmax',1);
+	t_binary=torsche.cycsch(gen_taskset, prob, m, schoptions);
     
     experTime(expCounter,1)=schparam(t_integer,'time');
     experTime(expCounter,2)=schparam(t_binary,'time');

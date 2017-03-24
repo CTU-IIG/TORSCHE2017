@@ -87,7 +87,7 @@ if nargin>1
 end
 
 % computing vector
-g = graph('adj',[[taskset.Prec; ones(1,size(taskset))], zeros(size(taskset)+1,1)]); % ones(... virtual node for release time accepting
+g = torsche.graph('adj',[[taskset.Prec; ones(1,size(taskset))], zeros(size(taskset)+1,1)]); % ones(... virtual node for release time accepting
 for i = 1 : size(taskset)
     to=find(taskset.Prec(i,:));
     for ii = 1 : length(to)

@@ -60,7 +60,7 @@ function varargout = jackson_demo
 
 PJS = [1 2; 2 1; 2 1; 1 2];
 PTJS = [7 3; 5 4; 6 6; 8 6];
-sh = shop(PTJS,PJS);
+sh = torsche.shop(PTJS,PJS);
 sh.type = 'J';
 ts = shop2taskset(sh);
 yax = {};
@@ -70,8 +70,8 @@ for i=1:size(ts)
     yax{i} = ['T' n(t{1}{1}(1,1):t{1}{1}(1,2)) n(t{1}{1}(2,1):t{1}{1}(2,2))];
 end
 
-pr = problem('J2|nj<=2|Cmax');
-sh = jackson(sh,pr);
+pr = torsche.problem('J2|nj<=2|Cmax');
+sh = torsche.jackson(sh,pr);
 if nargout == 3
 	varargout{1}=PTJS;
 	varargout{2}=PJS;
@@ -84,7 +84,6 @@ else
 	title('Unscheduled shop');
 	subplot(2,1,2);
 	a = plot(sh);
-        legend(a, ts.Name);
 	title('Scheduled Job-shop by Jackson algorithm ')
 
 end

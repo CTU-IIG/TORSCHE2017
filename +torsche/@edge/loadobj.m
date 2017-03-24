@@ -47,7 +47,7 @@ function edgeout = loadobj(edgein)
 % Suite 330, Boston, MA 02111-1307 USA
 
 
-if isa(edgein, 'edge')
+if isa(edgein, 'torsche.edge')
     edgeout = edgein;
 else %edgein is old version
     num = length(edgein);

@@ -70,7 +70,7 @@ function out=get_graphic_param(obj, varargin)
 objectname = inputname(1);
 if isfield(struct(obj),'parent')
     objs = struct(obj);
-    objparent = getfield(objs,objs.parent);
+    objparent = objs.parent;
     out=get_graphic_param(objparent, varargin{:});
 else
     ni = length(varargin);

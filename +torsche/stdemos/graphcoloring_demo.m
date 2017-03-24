@@ -61,12 +61,12 @@ A = [0 1 1 0 0 0 0;
     1 0 0 1 0 0 0;
     1 0 0 0 1 0 1;
     0 0 0 0 1 0 0];
-g3 = graph('adj',A);
+g3 = torsche.graph('adj',A);
 g3.Name = 'G_{2}';
 g4 = graphcoloring(g3);
 g4.Name = 'G_{2} - Colored';
 
-graphedit(g3,g4);
+torsche.graphedit(g3,g4);
 
 %end of file
 

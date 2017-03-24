@@ -69,7 +69,7 @@ function shop = fslb(FS, pr)
 
 
 
-if isa(FS,'shop') && isa(pr,'problem')
+if isa(FS,'torsche.shop') && isa(pr,'torsche.problem')
 	if isempty(FS.LimitedBuffers)
 		error('TORSCHE:shop:invalidParam','Invalid parameters - shop must contain limited an buffers object!')
 	else

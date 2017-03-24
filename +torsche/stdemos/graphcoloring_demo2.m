@@ -53,24 +53,24 @@ disp('Demo of graph coloring algorithm.');
 disp('-------------------------------------------');
 
 
-close(graphedit);
+close(torsche.graphedit);
 
 picturePath = [fileparts(mfilename('fullpath')) filesep];
 cDataClean = imread([picturePath 'czech_regions.png']);
 cDataColor = imread([picturePath 'czech_regions_colored.png']);
 [height,width,colors] = size(cDataClean);
 monitor = get(0,'ScreenSize');
-graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
+torsche.graphedit('position',[(monitor(3)-width)/2, (monitor(4)-height)/2 width height],...
           'hideparts','all','viewnodesnames','off','propertyeditor','off')
 
 %======================================================================
 
 % Slide 1
-graphedit('importbackground',cDataClean,'fitbackground','width')
+torsche.graphedit('importbackground',cDataClean,'fitbackground','width')
 
 % Slide 2
-g = graph('adj',zeros(14));
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+g = torsche.graph('adj',zeros(14));
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 % Slide 3
 x = [124;  66; 189; 338; 328; 424; 479; 579; 692; 650; 527; 272; 414; 264];
@@ -79,34 +79,34 @@ for i = 1:length(g.N),
     g.N(i).GraphicParam{1}.x = x(i);
     g.N(i).GraphicParam{1}.y = y(i);
 end
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 % Slide 4
 edgeList = {1,2; 1,3; 1,5; 1,14; 2,3; 3,4; 3,5; 4,5; 4,6; 5,6; 5,7;...
             5,13; 5,14; 5,12; 6,7; 7,8; 7,11; 7,13; 8,9; 8,10; 8,11;...
             9,10; 10,11; 11,13; 11,14; 13,14};
-g = graph(g,'edl',edgeList);
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+g = torsche.graph(g,'edl',edgeList);
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 % Slide 5
 g = graphcoloring(g);
-graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataClean,'fitbackground','width','viewtab',1)
 
 % Slide 6
-graphedit(g,'importbackground',cDataColor,'fitbackground','width','viewtab',1)
+torsche.graphedit(g,'importbackground',cDataColor,'fitbackground','width','viewtab',1)
 
 % Slide 7
-graphedit('createtab',[],'importbackground',cDataColor,'fitbackground','width','viewtab',1)
+torsche.graphedit('createtab',[],'importbackground',cDataColor,'fitbackground','width','viewtab',1)
 
 %======================================================================
 
 % Slideshow
 for i = 1:7,
-    graphedit('viewtab',i); pause(2.0);
+    torsche.graphedit('viewtab',i); pause(2.0);
 end
 for i = 1:4,
-    graphedit('viewtab',1); pause(0.5);
-    graphedit('viewtab',7); pause(0.5);
+    torsche.graphedit('viewtab',1); pause(0.5);
+    torsche.graphedit('viewtab',7); pause(0.5);
 end
 
 %end of file
