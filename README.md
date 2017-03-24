@@ -41,6 +41,7 @@ Or alternatively type help plot and then select task/plot at the bottom line of 
 
 ## Documentation
 A documentation of the TORSCHE Scheduling Toolbox in the form of the pdf file is a part of the repository ([documentation/main.pdf][l_doc]). Moreover, the online documentation is also available on [web pages][l_webpage] of the project.
+Note, that the documentation is not updated and you are not able to follow it directly. The best way, how to learn new habits in TORSCHE, is go through the examples in <Matlab root>\toolbox\TORSCHE2017-master\stdemos directory now.
 
 [l_dce]: http://dce.fel.cvut.cz/en/
 [l_doc]: documentation/main.pdf
