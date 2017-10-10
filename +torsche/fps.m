@@ -89,6 +89,7 @@ while(tmax < tstop)
             temptask = pts.parent;
             temptask.Processor = i; % Hack for plotting the schedule
             temptask.ReleaseTime = tmax;
+            temptask.Deadline = temptask.Deadline + tmax;
             readyTasks{i} = temptask;
         end
     end
