@@ -76,24 +76,27 @@ tstop = 1;
 for i = 1:noft
     tstop = lcm(tstop, per(i));
 end
-   
 
-while(tmax < tstop)
-    offs = mod(tmax, per);
-    for i=1:noft
-        if (offs(i) == 0)
-            
-            ready(i)=c(i); % put the tasks to the ready set
-            pt = ts.tasks(i);
+% Procedure to add to the ready queue all tasks released at time t.
+function add_to_ready(t)
+    offs = mod(t, per);
+    for j=1:noft
+        if (offs(j) == 0)
+            ready(j)=c(j); % put the tasks to the ready set
+            pt = ts.tasks(j);
             pts = struct(pt);
             temptask = pts.parent;
-            temptask.Processor = i; % Hack for plotting the schedule
-            temptask.ReleaseTime = tmax;
-            temptask.Deadline = temptask.Deadline + tmax;
-            readyTasks{i} = temptask;
+            temptask.Processor = j; % Hack for plotting the schedule
+            temptask.ReleaseTime = t;
+            temptask.Deadline = temptask.Deadline + t;
+            readyTasks{j} = temptask;
         end
     end
-   
+end
+
+while(tmax < tstop)
+
+    add_to_ready(tmax);
     
     schedtask=-1; %  -1 means the idle task
     maxprio=1;
@@ -125,6 +128,11 @@ while(tmax < tstop)
         readyTasks{schedtask} = add_scht(readyTasks{schedtask}, start, len, processor);
         ready(schedtask)= 0;
         
+        % check for tasks released during the execution time
+        for t = tmax + 1 : tmax + executed - 1
+            add_to_ready(t);
+        end
+        
         if any(ready)
             tmax = tmax + executed;
         else
@@ -138,3 +146,5 @@ while(tmax < tstop)
      end
 end
 add_schedule(resultts, 'Fixed priority schedule');
+
+end
