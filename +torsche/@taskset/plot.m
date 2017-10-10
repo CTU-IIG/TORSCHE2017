@@ -25,6 +25,7 @@ function varargout=plot(T, varargin)
 %    - 0 - Black & White
 %    - 1 - Generate colors only for tasks without color
 %    - 2 - Generate colors for all tasks 
+%    - 2 - Generate one color for each processor
 %    - default value is 1)
 %  ASAP:
 %    - 0 - normal draw (default)
@@ -235,6 +236,17 @@ end
 % coloring
 if setcol == 0
     col = ones(length(T.tasks),3);
+elseif setcol == 3
+    % one color per processor
+    try
+        processors = cellfun(@(t) t.Processor, T.tasks);
+        col_tmp = torsche.colorfromcolormap(max(processors));
+        col = zeros(length(T.tasks),3);
+        col(1:length(T.tasks),:) = col_tmp(processors,:);
+    catch
+        warning('Processors not well defined, not colouring...');
+        col = ones(length(T.tasks),3);
+    end
 else
     %col = colorcube(length(T.tasks)+8);
     col = torsche.colorfromcolormap(length(T.tasks));
