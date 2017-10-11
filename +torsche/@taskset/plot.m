@@ -25,7 +25,7 @@ function varargout=plot(T, varargin)
 %    - 0 - Black & White
 %    - 1 - Generate colors only for tasks without color
 %    - 2 - Generate colors for all tasks 
-%    - 2 - Generate one color for each processor
+%    - 3 - Generate one color for each processor
 %    - default value is 1)
 %  ASAP:
 %    - 0 - normal draw (default)
